@@ -1,0 +1,14 @@
+.navItem {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    font-size: large;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.active {
+    color: white;
+    background-color: orange;
+    border-radius: 25px;
+}
