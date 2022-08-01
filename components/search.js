@@ -1,30 +1,24 @@
 import { FiSearch } from "react-icons/fi";
+import styleLogin from "../styles/Login.module.css";
 import searchStyle from "../styles/Search.module.css";
 
 function Search() {
   return (
     <>
-      <div
-        className="container text-center fixed-top bg-white"
-        style={{ boxShadow: "1px 10px 15px -10px rgba(0,0,0,0.51)" }}
-      >
-        <div className="row justify-content-md-center justify-content-lg-center">
-          <div className="col-md-auto">
-            <div className="input-group mb-3 mt-3">
-              <span className="input-group-text">
-                <FiSearch />
-              </span>
+      <div className="container text-center fixed-top bg-white">
+        <div className="row justify-content-lg-center">
+          <div className="col">
+            <div className={`${styleLogin.search} mb-2 mt-3`}>
               <input
                 type="text"
-                className="form-control"
+                className={`${styleLogin.formControl} form-control`}
                 placeholder="Search Pasta, Bread, etc"
-                style={{ backgroundColor: "#EFEFEF" }}
               />
+              <FiSearch className={styleLogin.icon} />{" "}
             </div>
           </div>
         </div>
       </div>
-
     </>
   );
 }

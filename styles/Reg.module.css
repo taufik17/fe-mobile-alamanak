@@ -1,0 +1,53 @@
+.backIcon {
+  color: #999999;
+  font-size: 25px;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.desc {
+  color: #999999;
+}
+
+.desc {
+  color: #c4c4c4;
+}
+
+.search {
+    border-radius: 15px;
+  background-color: white;
+  position: relative;
+}
+
+.search input {
+    border-radius: 15px;
+  background-color: white;
+  height: 60px;
+  text-indent: 45px;
+  border: unset;
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 2px solid #efc81a;
+}
+
+.search input:focus::placeholder {
+  color: #efc81a;
+}
+
+.search .icon {
+  color: #c4c4c4;
+  position: absolute;
+  font-size: 25px;
+  top: 18px;
+  left: 20px;
+}
+
+.search input:focus + .icon {
+  color: #efc81a;
+}
