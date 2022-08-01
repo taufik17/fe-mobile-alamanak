@@ -1,0 +1,64 @@
+.back {
+    background-color: #F8F8FA;
+    padding: 10px;
+    font-size: 50px;
+    border-radius: 8px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.menuTag {
+    padding-right: 50px;
+    color: #F1CD31;
+}
+
+.namePopular {
+    margin: 0;
+    color: #666666;
+}
+
+.variant {
+    margin: 0;
+    font-size: 20px;
+    color: #B6B6B6;
+}
+
+.taste {
+    font-size: large;
+    font-weight: 600;
+}
+
+.icon {
+    /* background-color: #F1CD31; */
+    padding: 8px;
+    border: 1px solid #F1CD31;
+    border-radius: 50%;
+    font-size: 45px;
+    color: #F1CD31;
+}
+
+.active {
+    background-color: #F1CD31;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 45px;
+    color: white;
+}
+
+.rmPadRight {
+    padding-right: 0px !important;
+}
+
+.rmPadLeft {
+    padding-left: 0px !important;
+}
+
+.imgPopular {
+    align-items: center;
+}
+
+.imgPopular img {
+    border-radius: 25px;
+}
