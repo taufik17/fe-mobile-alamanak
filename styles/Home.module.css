@@ -5,3 +5,63 @@
 .category {
     font-weight: bold;
 }
+
+.cardTitle {
+    position: relative;
+    color: white;
+    text-align: center;
+    justify-content: end;
+    background-color: #0000008a;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    bottom: -7px;
+    border-radius: 0 0 15px 15px;
+}
+
+.cardNew{
+    padding: 8px;
+    border: unset;
+}
+
+.cardPopular{
+    border-radius: 15px;
+    border: none;
+}
+
+.imgNew {
+    border-radius: 15px;
+}
+
+.imgPopular {
+    margin: 10px;
+    align-items: center;
+}
+
+.imgPopular img {
+    border-radius: 25px;
+}
+
+.labelNew {
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.more {
+    font-size: large;
+    color: blue;
+    text-align: right;
+    cursor: pointer;
+}
+
+.namePopular {
+    color: #666666;
+}
+
+.taste {
+    font-size: 20px;
+    color: #B6B6B6;
+}
+
+.star {
+    padding-top: 5px !important;
+}

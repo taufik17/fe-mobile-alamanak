@@ -10,7 +10,6 @@ import styleLogin from "../../styles/Login.module.css";
 import styleRegister from "../../styles/Reg.module.css";
 import Link from "next/link";
 import { useEffect } from "react";
-useEffect;
 
 function Register() {
   useEffect(() => {
