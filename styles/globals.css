@@ -24,3 +24,7 @@ a {
     background: black;
   }
 }
+
+.container {
+  max-width: 640px !important;
+}

@@ -1,0 +1,83 @@
+.iconUser {
+  font-size: 150px;
+  background-color: #c4c4c4;
+  color: white;
+  margin-top: 8vh;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.welcome {
+  color: #efc81a;
+}
+
+.desc {
+  color: #c4c4c4;
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+background-color: #F5F5F5;
+  height: 60px;
+  text-indent: 45px;
+  border:  unset;
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 2px solid #efc81a;
+}
+
+.search input:focus::placeholder {
+  color: #efc81a;
+}
+
+.search .icon {
+  color: #c4c4c4;
+  position: absolute;
+  font-size: 25px;
+  top: 18px;
+  left: 20px;
+}
+
+.search input:focus + .icon {
+  color: #efc81a;
+}
+
+.forgotPass {
+    padding-top: 10px;
+    text-align: end;
+    cursor: pointer;
+    color: #999999;
+}
+
+.btnLogin {
+    color: white;
+    font-weight: bold;
+    background-color: #EFC81A;
+}
+
+.btnLogin:hover {
+    color: white;
+    font-weight: bold;
+    background-color: #dbb300;
+}
+
+.btnLogin:focus {
+    color: white;
+    font-weight: bold;
+    background-color: #dbb300;
+}
+
+.ask {
+    color: #999999;
+}
+
+.reg {
+    color: #EFC81A;
+    text-decoration: none;
+    cursor: pointer;
+}
