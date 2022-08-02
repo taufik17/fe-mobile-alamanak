@@ -8,9 +8,9 @@ import Link from "next/link";
 function Index() {
   return (
     <>
-      <div className={styleProfile.bgOrange}>
-        <div className="container">
-          <NavbarBottom />
+      <div className="container px-0">
+        <NavbarBottom />
+        <div className={styleProfile.bgOrange}>
           <div className="text-center pt-5">
             <Image
               className={styleProfile.imgProfile}
@@ -71,17 +71,17 @@ function Index() {
           </Link>
 
           <Link href="/Profile/LikedRecipe">
-          <div className={`${styleProfile.cur} row p-3`}>
-            <div className="col-2 text-center">
-              <BiLike className={styleProfile.icon} />
+            <div className={`${styleProfile.cur} row p-3`}>
+              <div className="col-2 text-center">
+                <BiLike className={styleProfile.icon} />
+              </div>
+              <div className="col-8">
+                <h6>Liked Recipe</h6>
+              </div>
+              <div className="col-2 text-center">
+                <FiChevronRight />
+              </div>
             </div>
-            <div className="col-8">
-              <h6>Liked Recipe</h6>
-            </div>
-            <div className="col-2 text-center">
-              <FiChevronRight />
-            </div>
-          </div>
           </Link>
         </div>
       </div>

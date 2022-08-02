@@ -168,35 +168,39 @@ function HomeContent() {
               </div>
             </div>
 
-            <div className={`${styleHome.cardPopular} card mb-4`}>
-              <div className="row align-items-center">
-                <div className="col-4">
-                  <div className={styleHome.imgPopular}>
-                    <Image
-                      src="/images/salmon.jpg"
-                      alt="Card image"
-                      width="225"
-                      height="225"
-                    />
+            <Link href="/DetailRecipe">
+              <div
+                className={`${styleHome.cardPopular} ${styleHome.link} card mb-4`}
+              >
+                <div className="row align-items-center">
+                  <div className="col-4">
+                    <div className={styleHome.imgPopular}>
+                      <Image
+                        src="/images/salmon.jpg"
+                        alt="Card image"
+                        width="225"
+                        height="225"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="col-8">
-                  <div className="m-2">
-                    <h3 className={styleHome.namePopular}>Teriyaki Salmon</h3>
-                    <p className={styleHome.taste}>spicy, salted</p>
-                    <Image
-                      className={styleHome.star}
-                      src="/images/star.svg"
-                      alt="Star"
-                      width="25"
-                      height="25"
-                    />
-                    <span className={styleHome.taste}>{"  "}4.7</span>
+                  <div className="col-8">
+                    <div className="m-2">
+                      <h3 className={styleHome.namePopular}>Teriyaki Salmon</h3>
+                      <p className={styleHome.taste}>spicy, salted</p>
+                      <Image
+                        className={styleHome.star}
+                        src="/images/star.svg"
+                        alt="Star"
+                        width="25"
+                        height="25"
+                      />
+                      <span className={styleHome.taste}>{"  "}4.7</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
+            </Link>
+
             <div className={`${styleHome.cardPopular} card mb-4`}>
               <div className="row align-items-center">
                 <div className="col-4">
@@ -225,7 +229,6 @@ function HomeContent() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

@@ -1,0 +1,13 @@
+.bgImage {
+    /* height: 500px; */
+}
+
+.imgProfile {
+    padding: 0;
+    margin: 0;
+    object-fit: cover;
+}
+
+.getUp {
+    margin-top: -50px;
+}

@@ -65,3 +65,7 @@
 .star {
     padding-top: 5px !important;
 }
+
+.link {
+    cursor: pointer;
+}
