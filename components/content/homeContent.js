@@ -102,7 +102,7 @@ function HomeContent() {
                   src="/images/1.jpg"
                   alt="Card image"
                   width="230"
-                  height="260"
+                  height="300"
                 />
                 <div className="row card-img-overlay align-items-end">
                   <div className={styleHome.labelNew}>
@@ -117,7 +117,7 @@ function HomeContent() {
                   src="/images/2.jpg"
                   alt="Card image"
                   width="230"
-                  height="260"
+                  height="300"
                 />
                 <div className="row card-img-overlay align-items-end">
                   <div className={styleHome.labelNew}>
@@ -132,7 +132,7 @@ function HomeContent() {
                   src="/images/3.jpg"
                   alt="Card image"
                   width="230"
-                  height="260"
+                  height="300"
                 />
                 <div className="row card-img-overlay align-items-end">
                   <div className={styleHome.labelNew}>
@@ -147,7 +147,7 @@ function HomeContent() {
                   src="/images/4.jpg"
                   alt="Card image"
                   width="230"
-                  height="260"
+                  height="300"
                 />
                 <div className="row card-img-overlay align-items-end">
                   <div className={styleHome.labelNew}>
