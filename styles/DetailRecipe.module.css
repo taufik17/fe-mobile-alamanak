@@ -9,5 +9,36 @@
 }
 
 .getUp {
-    margin-top: -50px;
+    margin-top: -225px;
+}
+
+.tabTitle {
+    border: none !important;
+    border-width: 0px !important;
+    font-weight: 600;
+    /* nav-link-color: #18172B; */
+}
+
+.ingrContent {
+    background-color: #FAF7ED;
+    border: none;
+    border-radius: 25px;
+}
+
+.posTitleLike {
+    position: relative;
+    bottom: 240px;
+    z-index: 5;
+}
+
+.creator {
+    color: #B0B0B0;
+}
+
+.back {
+    color: #F5F5F5;
+    font-size: 40px;
+    position: relative;
+    bottom: 320px;
+    z-index: 5;
 }

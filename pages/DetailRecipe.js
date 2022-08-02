@@ -1,9 +1,13 @@
-import { FiUser, FiChevronRight, FiAward, FiBookmark } from "react-icons/fi";
-import { BiLike } from "react-icons/bi";
 import styleProfile from "../styles/Profile.module.css";
 import styleDetailRecipe from "../styles/DetailRecipe.module.css";
+import stylePopular from "../styles/Popular.module.css";
 import Image from "next/image";
+import { Tab, Tabs } from "react-bootstrap";
+import { FiBookmark, FiArrowLeft } from "react-icons/fi";
+import { BiLike } from "react-icons/bi";
 import Link from "next/link";
+import Ingredients from "../components/content/ingredients";
+import VideoStep from "../components/content/videoStep";
 
 function DetailRecipe() {
   return (
@@ -17,77 +21,49 @@ function DetailRecipe() {
           height="80px"
           layout="responsive"
         />
+        <Link href="/" passHref>
+          <a>
+            <p className={`${styleDetailRecipe.back} px-4`}>
+              <FiArrowLeft />
+            </p>
+          </a>
+        </Link>
+
+        <div
+          className={`${styleDetailRecipe.posTitleLike} row justify-content-between`}
+        >
+          <div className="col-5">
+            <h3 className="px-4 text-white">Sandwich with Egg</h3>
+            <p className={`${styleDetailRecipe.creator} px-4`}>
+              By Chef Ronald Humson
+            </p>
+          </div>
+          <div className="col-4 text-center align-self-end">
+            <span>
+              <FiBookmark
+                className={`${stylePopular.icon} ${stylePopular.active} mx-1`}
+              />
+              <BiLike
+                className={`${stylePopular.icon} ${stylePopular.active} mx-1`}
+              />
+            </span>
+          </div>
+        </div>
       </div>
 
       <div className={`${styleDetailRecipe.getUp} container  px-0`}>
         <div className={`${styleProfile.card} card`}>
-          <nav className="p-4">
-            <div className="nav nav-tabs" id="nav-tab" role="tablist">
-              <button
-                className="nav-link active"
-                id="nav-home-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#nav-home"
-                type="button"
-                role="tab"
-                aria-controls="nav-home"
-                aria-selected="true"
-              >
-                Ingredients
-              </button>
-              <button
-                className="nav-link"
-                id="nav-profile-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#nav-profile"
-                type="button"
-                role="tab"
-                aria-controls="nav-profile"
-                aria-selected="false"
-              >
-                Video Step
-              </button>
-              
-            </div>
-          </nav>
-          <div className="tab-content" id="nav-tabContent">
-            <div
-              className="tab-pane fade show active px-4"
-              id="nav-home"
-              role="tabpanel"
-              aria-labelledby="nav-home-tab"
-              tabIndex="0"
-            >
-              ...
-            </div>
-            <div
-              className="tab-pane fade"
-              id="nav-profile"
-              role="tabpanel"
-              aria-labelledby="nav-profile-tab"
-              tabIndex="0"
-            >
-              ...
-            </div>
-            <div
-              className="tab-pane fade"
-              id="nav-contact"
-              role="tabpanel"
-              aria-labelledby="nav-contact-tab"
-              tabIndex="0"
-            >
-              ...
-            </div>
-            <div
-              className="tab-pane fade"
-              id="nav-disabled"
-              role="tabpanel"
-              aria-labelledby="nav-disabled-tab"
-              tabIndex="0"
-            >
-              ...
-            </div>
-          </div>
+          <Tabs
+            defaultActiveKey="ingredients"
+            className={`${styleDetailRecipe.tabTitle} mb-3 mt-4 mx-4`}
+          >
+            <Tab eventKey="ingredients" title="Ingredients" className="mx-4">
+              <Ingredients />
+            </Tab>
+            <Tab eventKey="video" title="Video Step" className="mx-4">
+              <VideoStep />
+            </Tab>
+          </Tabs>
         </div>
       </div>
     </>

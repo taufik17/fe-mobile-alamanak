@@ -2,23 +2,28 @@ import { FiHome, FiPlusSquare, FiUser } from "react-icons/fi";
 import { BsChat } from "react-icons/bs";
 import navStyle from "../styles/Nav.module.css";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 function NavbarBottom() {
   const router = useRouter();
-  if (router.pathname == "/") {
-    var home = navStyle.active;
+
+  switch (router.pathname) {
+    case "/":
+      var home = navStyle.active;
+      break;
+    case "/AddRecipe":
+      var recipe = navStyle.active;
+      break;
+    case "/Profile":
+      var profile = navStyle.active;
+      break;
+    case "/Chat":
+      var chat = navStyle.active;
+      break;
+    default:
+      null;
   }
-  if (router.pathname == "/AddRecipe") {
-    var recipe = navStyle.active;
-  }
-  if (router.pathname == "/Profile") {
-    var profile = navStyle.active;
-  }
-  if (router.pathname == "/Chat") {
-    var chat = navStyle.active;
-  }
-  
+
   return (
     <>
       <div className="container text-center fixed-bottom bg-white">
