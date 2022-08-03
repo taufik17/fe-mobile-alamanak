@@ -8,6 +8,8 @@ function Video() {
         <ReactPlayer
           className={style.player}
           url='https://www.youtube.com/watch?v=gmDMsUJc8hw&t=3s'
+          playing
+          controls
           width='100%'
           height='100%'
         />
