@@ -1,15 +1,17 @@
 import ReactPlayer from "react-player";
+import style from "../styles/Video.module.css";
 
 function Video() {
   return (
     <>
-      <ReactPlayer
-        width="100%"
-        height="100%"
-        playing
-        controls
-        url="https://www.youtube.com/watch?v=gmDMsUJc8hw&t=3s"
-      />
+    <div className={style.wrapper}>
+        <ReactPlayer
+          className={style.player}
+          url='https://www.youtube.com/watch?v=gmDMsUJc8hw&t=3s'
+          width='100%'
+          height='100%'
+        />
+      </div>
     </>
   );
 }
