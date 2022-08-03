@@ -28,3 +28,7 @@ a {
 .container {
   max-width: 640px !important;
 }
+
+.rm-decoration {
+  text-decoration: none;
+}

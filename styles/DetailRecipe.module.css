@@ -8,8 +8,43 @@
     object-fit: cover;
 }
 
+.imgProfileComment {
+    align-items: center;
+}
+
+.imgProfileComment img {
+    border-radius: 50%;
+}
+
 .getUp {
     margin-top: -225px;
+}
+
+.card {
+    border-radius: 25px 25px 0px 0px;
+    border: unset;
+    height: max-content;
+    background-color: white;
+}
+
+.card li {
+    --bs-nav-link-color: #666666;
+    /* --bs-nav-tabs-border-width: none !important; */
+    --bs-nav-tabs-link-active-color: #18172B;
+    --bs-nav-link-hover-color: #18172B;
+}
+
+.card li .active {
+    outline-color: white !important;
+}
+
+.card button:focus {
+    outline-color: white !important;
+    border-bottom: 1px solid black;
+}
+
+.tabTitle li {
+    --bs-nav-tabs-link-active-border-color: white white orange;
 }
 
 .tabTitle {
@@ -41,4 +76,58 @@
     position: relative;
     bottom: 320px;
     z-index: 5;
+}
+
+.cardVideo {
+    background-color: #FAF7ED;
+    border-radius: 15px;
+    border: none;
+}
+
+.step {
+    margin: 0;
+    color: #666666;
+}
+
+.shortDesc {
+    margin: 0;
+    font-size: 16px;
+    color: #B6B6B6;
+}
+
+.comment {
+    border: none;
+    background-color: #FAF7ED;
+}
+
+.comment:focus {
+    color: #212529;
+    background-color: #FAF7ED;
+    border-color: #f1cd31;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.btnPostComment {
+    border: none;
+    font-size: larger;
+    font-weight: 600;
+    color: white;
+    background-color: #EFC81A;
+}
+
+.btnPostComment:hover {
+    border: none;
+    font-size: larger;
+    font-weight: 650;
+    color: white;
+    background-color: #cead18;
+}
+
+.btnPostComment:active {
+    border: unset;
+    font-size: larger;
+    font-weight: 650;
+    color: white;
+    background-color: #cead18;
 }

@@ -1,4 +1,3 @@
-import styleProfile from "../styles/Profile.module.css";
 import styleDetailRecipe from "../styles/DetailRecipe.module.css";
 import stylePopular from "../styles/Popular.module.css";
 import Image from "next/image";
@@ -52,7 +51,7 @@ function DetailRecipe() {
       </div>
 
       <div className={`${styleDetailRecipe.getUp} container  px-0`}>
-        <div className={`${styleProfile.card} card`}>
+        <div className={`${styleDetailRecipe.card} card`}>
           <Tabs
             defaultActiveKey="ingredients"
             className={`${styleDetailRecipe.tabTitle} mb-3 mt-4 mx-4`}
@@ -64,6 +63,44 @@ function DetailRecipe() {
               <VideoStep />
             </Tab>
           </Tabs>
+
+          <div className="mt-2 mx-4 mb-5">
+            <div className="form-floating">
+              <textarea
+                className={`${styleDetailRecipe.comment} form-control`}
+                placeholder="Leave a comment here"
+                style={{ height: "100px" }}
+              ></textarea>
+              <label htmlFor="floatingTextarea2">Comment:</label>
+            </div>
+
+            <div className="d-grid gap-2 mt-4">
+              <button
+                className={`${styleDetailRecipe.btnPostComment} btn`}
+                type="submit"
+              >
+                Post Comment
+              </button>
+            </div>
+
+            <div className="row mt-4 align-items-center">
+              <p>Comment:</p>
+              <div className={`${stylePopular.rmPadRight} col-2`}>
+                  <div className={styleDetailRecipe.imgProfileComment}>
+                    <Image
+                      src="/images/profile.jpg"
+                      alt="Card image"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                </div>
+              <div className="col-10">
+                <h6>Ayudia</h6>
+                <small>Nice recipe. simple and delicious, thankyou</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
