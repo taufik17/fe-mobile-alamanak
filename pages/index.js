@@ -1,5 +1,6 @@
-import Home from './Home';
+import Home from "./Home";
 function Index() {
+
   return (
     <>
       <Home />

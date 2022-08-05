@@ -1,42 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import styleLogin from "../../styles/Login.module.css";
 import Loading from "../../components/spinner";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import * as Type from "../../redux/auth/type";
 
 function Login() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    dispatch({ type: Type.SET_PROFILE, payload: "test" });
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      axios
-        .post("/api/auth/login", { email, password })
-        .then((res) => {
-          console.log("sampai sini")
-          Swal.fire({
-            icon: "success",
-            title: "Succseed",
-            text: "Berhasil Login",
-          }).then((result) => (result.isConfirmed ? navigate("/") : null));
-        })
-        .catch((err) => {
-          console.log(err)
-          setIsLoading(false);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: err?.response?.data?.message,
-          });
-        })
-        .finally(() => {
-          setIsLoading(false);
+    axios
+      .post("/api/auth/login", { email, password })
+      .then((res) => {
+        console.log(res?.data?.token);
+        Swal.fire({
+          icon: "success",
+          title: "Succseed",
+          text: "Berhasil Login",
+        }).then((result) => (result.isConfirmed ? router.replace("/") : null));
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err?.response?.data?.message,
         });
-    }, 100);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
   var a = "<p> Testing <p>";
   return (
@@ -87,10 +95,8 @@ function Login() {
                   type="submit"
                   disabled={isLoading}
                 >
-                
                   {isLoading ? <Loading /> : "LOG IN"}
                 </button>
-                
               </div>
             </form>
 

@@ -1,14 +1,15 @@
 import * as Type from "./type";
 
 const initialState = {
-  mission_data: null,
+  token: null,
+  profile: null,
 };
 
 const reducer = (state = initialState, action) => {
   let { type, payload } = action;
   switch (type) {
     case Type.SET_PROFILE:
-      return { ...state, mission_data: payload };
+      return { ...state, profile: payload };
 
     case Type.GET_PROFILE:
       return { ...state, mission_data: payload };

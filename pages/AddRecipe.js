@@ -1,11 +1,29 @@
 import NavbarBottom from "../components/navbarBottom";
 import styleEdit from "../styles/Edit.module.css";
 import styleAddRecipe from "../styles/AddRecipe.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiBookOpen, FiVideo } from "react-icons/fi";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import Loader from "react-fullpage-custom-loader";
 
 function AddRecipe() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
+
+  const router = useRouter();
+  const { auth } = useSelector((state) => state);
+  useEffect(() => {
+    if (!auth?.token) {
+      router.replace("/");
+      setIsLoading(false);
+    } else {
+      setIsAuth(true);
+      setIsLoading(false);
+    }
+  });
+
   useEffect(() => {
     document.body.style.backgroundColor = "#E5E5E5";
     return () => {
@@ -14,6 +32,11 @@ function AddRecipe() {
   });
   return (
     <>
+      {isAuth ? (
+        <> {isLoading ? <Loader sentences={[]} /> : <> </>} </>
+      ) : (
+        <Loader sentences={[]} wrapperBackgroundColor="black" />
+      )}
       <div className="container">
         <NavbarBottom />
         <div className="row mt-4 align-items-center mb-4">
@@ -54,10 +77,12 @@ function AddRecipe() {
         </div>
 
         <div className="text-center">
-
-        <button className={`${styleAddRecipe.btnPost} btn btn-warning px-5 mt-5 py-2`} type="button">
-          Post
-        </button>
+          <button
+            className={`${styleAddRecipe.btnPost} btn btn-warning px-5 mt-5 py-2`}
+            type="button"
+          >
+            Post
+          </button>
         </div>
       </div>
 

@@ -1,3 +1,4 @@
+import React from "react";
 import styleDetailRecipe from "../styles/DetailRecipe.module.css";
 import stylePopular from "../styles/Popular.module.css";
 import Image from "next/image";
@@ -86,15 +87,15 @@ function DetailRecipe() {
             <div className="row mt-4 align-items-center">
               <p>Comment:</p>
               <div className={`${stylePopular.rmPadRight} col-2`}>
-                  <div className={styleDetailRecipe.imgProfileComment}>
-                    <Image
-                      src="/images/profile.jpg"
-                      alt="Card image"
-                      width="100%"
-                      height="100%"
-                    />
-                  </div>
+                <div className={styleDetailRecipe.imgProfileComment}>
+                  <Image
+                    src="/images/profile.jpg"
+                    alt="Card image"
+                    width="100%"
+                    height="100%"
+                  />
                 </div>
+              </div>
               <div className="col-10">
                 <h6>Ayudia</h6>
                 <small>Nice recipe. simple and delicious, thankyou</small>

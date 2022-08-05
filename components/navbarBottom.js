@@ -1,10 +1,13 @@
+import React from "react";
 import { FiHome, FiPlusSquare, FiUser } from "react-icons/fi";
 import { BsChat } from "react-icons/bs";
 import navStyle from "../styles/Nav.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
-function NavbarBottom() {
+function NavbarBottom(props) {
+  const { auth } = useSelector((state) => state);
   const router = useRouter();
 
   switch (router.pathname) {
@@ -34,26 +37,43 @@ function NavbarBottom() {
               style={{ height: "50px" }}
             >
               <ul className="navbar-nav nav-justified w-100">
-                <Link href="/">
-                  <li className={`${navStyle.navItem} ${home}`}>
-                    <FiHome />
-                  </li>
-                </Link>
-                <Link href="/AddRecipe">
-                  <li className={`${navStyle.navItem} ${recipe}`}>
-                    <FiPlusSquare />
-                  </li>
-                </Link>
-                <Link href="/Chat">
-                  <li className={`${navStyle.navItem} ${chat}`}>
-                    <BsChat />
-                  </li>
-                </Link>
-                <Link href="Profile">
-                  <li className={`${navStyle.navItem} ${profile}`}>
-                    <FiUser />
-                  </li>
-                </Link>
+                {!auth?.token ? (
+                  <>
+                    <Link href="/">
+                      <li className={`${navStyle.navItem} ${home}`}>
+                        <FiHome />
+                      </li>
+                    </Link>
+                    <Link href="Profile">
+                      <li className={`${navStyle.navItem} ${profile}`}>
+                        <FiUser />
+                      </li>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/">
+                      <li className={`${navStyle.navItem} ${home}`}>
+                        <FiHome />
+                      </li>
+                    </Link>
+                    <Link href="/AddRecipe">
+                      <li className={`${navStyle.navItem} ${recipe}`}>
+                        <FiPlusSquare />
+                      </li>
+                    </Link>
+                    <Link href="/Chat">
+                      <li className={`${navStyle.navItem} ${chat}`}>
+                        <BsChat />
+                      </li>
+                    </Link>
+                    <Link href="Profile">
+                      <li className={`${navStyle.navItem} ${profile}`}>
+                        <FiUser />
+                      </li>
+                    </Link>
+                  </>
+                )}
               </ul>
             </nav>
           </div>
