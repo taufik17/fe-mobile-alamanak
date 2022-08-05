@@ -74,6 +74,12 @@
   background-color: #dbb300;
 }
 
+.btnLogin:disabled {
+  color: white;
+  font-weight: bold;
+  background-color: #dbb300;
+}
+
 .ask {
   color: #999999;
 }

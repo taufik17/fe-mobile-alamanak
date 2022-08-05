@@ -29,9 +29,9 @@ function DetailRecipe() {
         </Link>
 
         <div
-          className={`${styleDetailRecipe.posTitleLike} row justify-content-between`}
+          className={`${styleDetailRecipe.posTitleLike} row justify-content-between mx-0`}
         >
-          <div className="col-5">
+          <div className="col-6">
             <h3 className="px-4 text-white">Sandwich with Egg</h3>
             <p className={`${styleDetailRecipe.creator} px-4`}>
               By Chef Ronald Humson
