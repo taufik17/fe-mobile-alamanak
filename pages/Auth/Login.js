@@ -6,32 +6,53 @@ import Swal from "sweetalert2";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Type from "../../redux/auth/type";
+import Loader from "react-fullpage-custom-loader";
 
 function Login() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { auth } = useSelector((state) => state);
+
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: Type.SET_PROFILE, payload: "test" });
-  }, []);
+    if (auth?.profile?.token) {
+      router.replace("/");
+      setIsLoadingPage(false);
+    } else {
+      setIsAuth(true);
+      setIsLoadingPage(false);
+    }
+  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [loadLogin, setIsLoadLogin] = useState(false);
 
   const handleLogin = () => {
     setIsLoading(true);
     axios
       .post("/api/auth/login", { email, password })
       .then((res) => {
-        console.log(res?.data?.token);
+        dispatch({
+          type: Type.SET_AUTH,
+          payload: {
+            token: res?.data?.token,
+            user: res?.data?.user,
+          },
+        });
         Swal.fire({
           icon: "success",
           title: "Succseed",
           text: "Berhasil Login",
-        }).then((result) => (result.isConfirmed ? router.replace("/") : null));
+        })
+          .then((result) => (result.isConfirmed ? setIsLoadLogin(true) : null))
+          .then(router.replace("/"))
+          .then(setIsLoadLogin(false));
       })
       .catch((err) => {
         console.log(err);
@@ -46,9 +67,22 @@ function Login() {
         setIsLoading(false);
       });
   };
-  var a = "<p> Testing <p>";
+
   return (
     <>
+      {loadLogin ? (
+        <>
+          <Loader sentences={[]} />
+        </>
+      ) : (
+        <> </>
+      )}
+
+      {isAuth ? (
+        <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
+      ) : (
+        <Loader sentences={[]} wrapperBackgroundColor="black" />
+      )}
       <div className="container text-center">
         <div className="row justify-content-lg-center">
           <div className="col">

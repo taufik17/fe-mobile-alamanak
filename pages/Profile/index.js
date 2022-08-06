@@ -1,11 +1,34 @@
 import NavbarBottom from "../../components/navbarBottom";
 import { FiUser, FiChevronRight, FiAward, FiBookmark } from "react-icons/fi";
+import Swal from "sweetalert2";
+import { BiLogOut } from "react-icons/bi";
 import { BiLike } from "react-icons/bi";
 import styleProfile from "../../styles/Profile.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import * as Type from "../../redux/auth/type";
 
 function Index() {
+  const dispacth = useDispatch();
+  const router = useRouter();
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Logout?",
+      // text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispacth({type: Type.REMOVE_AUTH})
+        router.replace("/")
+      }
+    });
+  };
   return (
     <>
       <div className="container px-0">
@@ -83,6 +106,22 @@ function Index() {
               </div>
             </div>
           </Link>
+
+          <div className="row text-center">
+            <div className="col mt-5">
+              <div className="d-grid mb-5 pt-5 mx-5">
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={handleLogout}
+                >
+                  <h5 className="my-1">
+                    <BiLogOut /> Logout
+                  </h5>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

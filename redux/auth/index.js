@@ -8,11 +8,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   let { type, payload } = action;
   switch (type) {
-    case Type.SET_PROFILE:
-      return { ...state, profile: payload };
+    case Type.SET_AUTH:
+      return { ...state, profile: payload.user, token: payload.token };
 
-    case Type.GET_PROFILE:
-      return { ...state, mission_data: payload };
+    case Type.REMOVE_AUTH:
+      return { ...state, profile: null, token: null};
 
     default:
       return state;
