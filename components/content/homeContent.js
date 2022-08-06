@@ -5,12 +5,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NewRecipe from "../molecules/newRecipes";
+import CategoryRecipe from "../molecules/categoryRecipe";
 import NoDataComp from "../atoms/noDataComp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function HomeContent() {
   const [newRecipe, setNewRecipe] = useState([]);
+  const [categoryRecipe, setCategoryRecipe] = useState([]);
+
   useEffect(() => {
     document.body.style.backgroundColor = "#f8f9fa";
     return () => {
@@ -20,6 +23,7 @@ function HomeContent() {
 
   useEffect(() => {
     getNewRecipe();
+    getCategory();
   }, []);
 
   const getNewRecipe = () => {
@@ -27,7 +31,20 @@ function HomeContent() {
       .get("/api/recipe/newRecipe")
       .then((res) => {
         setNewRecipe(res?.data?.data);
-        console.log(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  };
+
+  const getCategory = () => {
+    axios
+      .get("/api/recipe/categoryRecipe")
+      .then((res) => {
+        setCategoryRecipe(res?.data?.data.slice(0,4));
       })
       .catch((err) => {
         console.log(err);
@@ -79,42 +96,13 @@ function HomeContent() {
             <div className={`${styleHome.popular} mb-4`}>
               <h5>Popular for You</h5>
               <div className={`${styleHome.category} row text-center`}>
-                <div className="col-3">
-                  <Image
-                    src="/images/1.svg"
-                    alt="Soup"
-                    width="500"
-                    height="500"
+                {categoryRecipe.map((item) => (
+                  <CategoryRecipe
+                    key={item?.id_category}
+                    name={item?.name_category}
+                    foto={item?.image}
                   />
-                  <p>Soup</p>
-                </div>
-                <div className="col-3">
-                  <Image
-                    src="/images/2.svg"
-                    alt="Chicken"
-                    width="500"
-                    height="500"
-                  />
-                  <p>Chicken</p>
-                </div>
-                <div className="col-3">
-                  <Image
-                    src="/images/3.svg"
-                    alt="Seafood"
-                    width="500"
-                    height="500"
-                  />
-                  <p>Seafood</p>
-                </div>
-                <div className="col-3">
-                  <Image
-                    src="/images/2.svg"
-                    alt="Dessert"
-                    width="500"
-                    height="500"
-                  />
-                  <p>Dessert</p>
-                </div>
+                ))}
               </div>
             </div>
 
