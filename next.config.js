@@ -2,18 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ["res.cloudinary.com", "localhost"],
+  },
 }
-
-// next.config.js
-module.exports = {
-  async rewrites() {
-      return [
-        {
-          source: '/api/:path*',
-          destination: 'http://localhost:8000/*',
-        },
-      ]
-    },
-};
 
 module.exports = nextConfig

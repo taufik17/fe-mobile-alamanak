@@ -14,7 +14,7 @@
     background-color: #0000008a;
     padding-top: 5px;
     padding-bottom: 15px;
-    bottom: -10px;
+    bottom: -15px;
     border-radius: 0 0 15px 15px;
 }
 
@@ -30,6 +30,7 @@
 
 .imgNew {
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .imgPopular {
@@ -69,3 +70,16 @@
 .link {
     cursor: pointer;
 }
+
+.animatedBg {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-color: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 300px;
+    position: relative;
+  }

@@ -2,17 +2,41 @@ import styleHome from "../../styles/Home.module.css";
 import Image from "next/image";
 import Slider from "react-slick";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import NewRecipe from "../molecules/newRecipes";
+import NoDataComp from "../atoms/noDataComp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function HomeContent() {
+  const [newRecipe, setNewRecipe] = useState([]);
   useEffect(() => {
     document.body.style.backgroundColor = "#f8f9fa";
     return () => {
       document.body.style.backgroundColor = "unset";
     };
   });
+
+  useEffect(() => {
+    getNewRecipe();
+  }, []);
+
+  const getNewRecipe = () => {
+    axios
+      .get("/api/recipe/newRecipe")
+      .then((res) => {
+        setNewRecipe(res?.data?.data);
+        console.log(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  };
+
   var settings = {
     dots: false,
     infinite: true,
@@ -96,65 +120,13 @@ function HomeContent() {
 
             <h5>New Recipes</h5>
             <Slider {...settings} className="mb-4">
-              <div className={`${styleHome.cardNew} card`}>
-                <Image
-                  className={styleHome.imgNew}
-                  src="/images/1.jpg"
-                  alt="Card image"
-                  width="230"
-                  height="300"
+              {newRecipe.map((item) => (
+                <NewRecipe
+                  key={item?.id_recipe}
+                  name={item?.recipe_name}
+                  foto={item?.recipe_image}
                 />
-                <div className="row card-img-overlay align-items-end">
-                  <div className={styleHome.labelNew}>
-                    <h4 className={styleHome.cardTitle}>Sate</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div className={`${styleHome.cardNew} card`}>
-                <Image
-                  className={styleHome.imgNew}
-                  src="/images/2.jpg"
-                  alt="Card image"
-                  width="230"
-                  height="300"
-                />
-                <div className="row card-img-overlay align-items-end">
-                  <div className={styleHome.labelNew}>
-                    <h4 className={styleHome.cardTitle}>Bananaa Lemonilo</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div className={`${styleHome.cardNew} card`}>
-                <Image
-                  className={styleHome.imgNew}
-                  src="/images/3.jpg"
-                  alt="Card image"
-                  width="230"
-                  height="300"
-                />
-                <div className="row card-img-overlay align-items-end">
-                  <div className={styleHome.labelNew}>
-                    <h4 className={styleHome.cardTitle}>Pizza</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div className={`${styleHome.cardNew} card`}>
-                <Image
-                  className={styleHome.imgNew}
-                  src="/images/4.jpg"
-                  alt="Card image"
-                  width="230"
-                  height="300"
-                />
-                <div className="row card-img-overlay align-items-end">
-                  <div className={styleHome.labelNew}>
-                    <h4 className={styleHome.cardTitle}>Odading</h4>
-                  </div>
-                </div>
-              </div>
+              ))}
             </Slider>
 
             <div className="row justify-content-between">
