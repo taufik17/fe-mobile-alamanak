@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import stylePopular from "../../styles/Popular.module.css";
-import styleProfile from "../../styles/Profile.module.css";
-import Image from "next/image";
+import styleHome from "../../styles/Home.module.css";
 import Link from "next/link";
-import { FiChevronLeft, FiAward, FiTrash, FiEdit } from "react-icons/fi";
+import { FiChevronLeft, FiAward } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import axios from "axios";
 import Loader from "react-fullpage-custom-loader";
+import MyRecipeComp from "../../components/molecules/myRecipe";
 
 function MyRecipe() {
   const { auth } = useSelector((state) => state);
@@ -14,6 +15,30 @@ function MyRecipe() {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
   const router = useRouter();
+
+  const [myRecipe, setMyRecipe] = useState([]);
+  const [loadMyRecipe, setLoadMyRecipe] = useState(true);
+
+  useEffect(() => {
+    getMyRecipe();
+  }, []);
+
+  const getMyRecipe = () => {
+    const id_user = auth?.profile?.id_user;
+    axios
+      .post("/api/recipe/myRecipe", { id_user })
+      .then((res) => {
+        console.log(res?.data?.data);
+        setMyRecipe(res?.data?.data);
+        setLoadMyRecipe(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  };
 
   useEffect(() => {
     if (auth?.token == null) {
@@ -25,17 +50,16 @@ function MyRecipe() {
     }
   });
 
-
   return (
     <>
-    {isAuth ? (
+      {isAuth ? (
         <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
       ) : (
         <Loader sentences={[]} wrapperBackgroundColor="black" />
       )}
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-auto mb-5 mt-4">
+          <div className="col mb-5 mt-4">
             <div className="row align-items-center mb-4">
               <Link href="/Profile">
                 <div className={`${stylePopular.link} col-2`}>
@@ -52,40 +76,27 @@ function MyRecipe() {
               </div>
             </div>
 
-            <div className={`${styleProfile.cardPopular} card mb-4`}>
-              <div className="row align-items-center">
-                <div className={`${styleProfile.rmPadRight} col-3`}>
-                  <Image
-                    className={styleProfile.imgPopular}
-                    src="/images/vegan.jpg"
-                    alt="Card image"
-                    width="100%"
-                    height="100%"
-                    layout="responsive"
+            {loadMyRecipe ? (
+              <>
+                <div className="col">
+                  <div className="card">
+                    <div className={styleHome.animatedBg} />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {myRecipe.map((item) => (
+                  <MyRecipeComp
+                    key={item?.id_recipe}
+                    name={item?.recipe_name}
+                    foto={item?.recipe_image}
+                    category={item?.name_category}
+                    taste={item?.taste}
                   />
-                </div>
-                <div className={`${stylePopular.rmPadRight} col-5`}>
-                  <div className="m-2">
-                    <h6 className={stylePopular.namePopular}>Veg Loaded</h6>
-                    <p className={styleProfile.variant}>In Veg Pizza</p>
-                    <span className={styleProfile.taste}>Spicy</span>
-                  </div>
-                </div>
-
-                <div className="col-4">
-                  <div className="m-0">
-                    <span>
-                      <FiEdit
-                        className={`${styleProfile.icon} ${styleProfile.edit} mx-1`}
-                      />
-                      <FiTrash
-                        className={`${styleProfile.icon} ${styleProfile.delete} mx-1`}
-                      />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
