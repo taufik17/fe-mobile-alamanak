@@ -30,3 +30,44 @@
 .cur {
     cursor: pointer;
 }
+
+.icon {
+    /* background-color: #F1CD31; */
+    padding: 8px;
+    border-radius: 20%;
+    font-size: 35px;
+}
+
+.edit {
+    background-color: #F1CD31;
+    color: white;
+    border: 1px solid #F1CD31;
+}
+
+.delete {
+    background-color: maroon;
+    color: white;
+    border: 1px solid maroon;
+}
+
+.cardPopular{
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 3px 1px rgba(216, 216, 216, 0.45);
+}
+
+.imgPopular {
+    border-radius: 10px;
+}
+
+.variant {
+    margin: 0;
+    padding-top: 1px;
+    font-size: small;
+    color: #B6B6B6;
+}
+
+.taste {
+    font-size: medium;
+    font-weight: 400;
+}

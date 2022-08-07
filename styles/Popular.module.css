@@ -10,7 +10,6 @@
 }
 
 .menuTag {
-    padding-right: 50px;
     color: #F1CD31;
 }
 
@@ -57,6 +56,7 @@
 
 .imgPopular {
     align-items: center;
+    height: fit-content;
 }
 
 .imgPopular img {

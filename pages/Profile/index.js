@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import NavbarBottom from "../../components/navbarBottom";
 import { FiUser, FiChevronRight, FiAward, FiBookmark } from "react-icons/fi";
 import Swal from "sweetalert2";
@@ -40,14 +40,14 @@ function Index() {
       confirmButtonText: "Logout",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispacth({type: Type.REMOVE_AUTH})
-        router.replace("/")
+        dispacth({ type: Type.REMOVE_AUTH });
+        router.replace("/");
       }
     });
   };
   return (
     <>
-    {isAuth ? (
+      {isAuth ? (
         <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
       ) : (
         <Loader sentences={[]} wrapperBackgroundColor="black" />
