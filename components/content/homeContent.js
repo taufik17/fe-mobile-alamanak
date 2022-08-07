@@ -12,7 +12,9 @@ import "slick-carousel/slick/slick-theme.css";
 
 function HomeContent() {
   const [newRecipe, setNewRecipe] = useState([]);
+  const [loadNewRecipe, setLoadNewRecipe] = useState(true);
   const [categoryRecipe, setCategoryRecipe] = useState([]);
+  const [loadCategory, setLoadCategory] = useState(true);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#f8f9fa";
@@ -31,6 +33,7 @@ function HomeContent() {
       .get("/api/recipe/newRecipe")
       .then((res) => {
         setNewRecipe(res?.data?.data);
+        setLoadNewRecipe(false);
       })
       .catch((err) => {
         console.log(err);
@@ -44,7 +47,8 @@ function HomeContent() {
     axios
       .get("/api/recipe/categoryRecipe")
       .then((res) => {
-        setCategoryRecipe(res?.data?.data.slice(0,4));
+        setCategoryRecipe(res?.data?.data.slice(0, 4));
+        setLoadCategory(false);
       })
       .catch((err) => {
         console.log(err);
@@ -95,27 +99,51 @@ function HomeContent() {
           <div className="col-md-auto mb-5">
             <div className={`${styleHome.popular} mb-4`}>
               <h5>Popular for You</h5>
-              <div className={`${styleHome.category} row text-center`}>
-                {categoryRecipe.map((item) => (
-                  <CategoryRecipe
-                    key={item?.id_category}
-                    name={item?.name_category}
-                    foto={item?.image}
-                  />
-                ))}
-              </div>
+              {loadCategory ? (
+                <>
+                  <div className="col">
+                    <div className="card">
+                      <div className={styleHome.animatedBg} />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={`${styleHome.category} row text-center`}>
+                    {categoryRecipe.map((item) => (
+                      <CategoryRecipe
+                        key={item?.id_category}
+                        name={item?.name_category}
+                        foto={item?.image}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             <h5>New Recipes</h5>
-            <Slider {...settings} className="mb-4">
-              {newRecipe.map((item) => (
-                <NewRecipe
-                  key={item?.id_recipe}
-                  name={item?.recipe_name}
-                  foto={item?.recipe_image}
-                />
-              ))}
-            </Slider>
+            {loadNewRecipe ? (
+              <>
+                <div className="col">
+                  <div className="card">
+                    <div className={styleHome.animatedBg} />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <Slider {...settings} className="mb-4">
+                  {newRecipe.map((item) => (
+                    <NewRecipe
+                      key={item?.id_recipe}
+                      name={item?.recipe_name}
+                      foto={item?.recipe_image}
+                    />
+                  ))}
+                </Slider>
+              </>
+            )}
 
             <div className="row justify-content-between">
               <div className="col-8">

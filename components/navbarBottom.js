@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 function NavbarBottom(props) {
   const { auth } = useSelector((state) => state);
-  console.log("ini auth",auth);
   const router = useRouter();
 
   switch (router.pathname) {

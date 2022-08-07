@@ -6,13 +6,17 @@ import { BiLike } from "react-icons/bi";
 import styleProfile from "../../styles/Profile.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import * as Type from "../../redux/auth/type";
 
 function Index() {
+  const { auth } = useSelector((state) => state);
   const dispacth = useDispatch();
   const router = useRouter();
+
+  console.log("ini auth",auth);
+
   const handleLogout = () => {
     Swal.fire({
       title: "Logout?",
@@ -37,13 +41,13 @@ function Index() {
           <div className="text-center pt-5">
             <Image
               className={styleProfile.imgProfile}
-              src="/images/profile.jpg"
+              src={auth?.profile?.user_image}
               alt="Card image"
               width="120"
               height="120"
             />
             <h4 className={`${styleProfile.name} mt-2`}>
-              Taufik Agung Santoso
+              {auth?.profile?.name}
             </h4>
           </div>
         </div>
