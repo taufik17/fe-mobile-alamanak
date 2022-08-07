@@ -1,12 +1,11 @@
 import styleHome from "../../styles/Home.module.css";
-import Image from "next/image";
 import Slider from "react-slick";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NewRecipe from "../molecules/newRecipes";
 import CategoryRecipe from "../molecules/categoryRecipe";
-import NoDataComp from "../atoms/noDataComp";
+import PopularRecipe from "../molecules/popularRecipe";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -15,6 +14,8 @@ function HomeContent() {
   const [loadNewRecipe, setLoadNewRecipe] = useState(true);
   const [categoryRecipe, setCategoryRecipe] = useState([]);
   const [loadCategory, setLoadCategory] = useState(true);
+  const [popularRecipe, setPopularRecipe] = useState([]);
+  const [loadPopular, setLoadPopular] = useState(true);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#f8f9fa";
@@ -26,6 +27,7 @@ function HomeContent() {
   useEffect(() => {
     getNewRecipe();
     getCategory();
+    getPopular();
   }, []);
 
   const getNewRecipe = () => {
@@ -55,6 +57,21 @@ function HomeContent() {
       })
       .finally(() => {
         // setIsLoading(false);
+      });
+  };
+
+  const getPopular = () => {
+    axios
+      .get("/api/recipe/popular")
+      .then((res) => {
+        setPopularRecipe(res?.data?.data.slice(0, 5));
+        setLoadPopular(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoadPopular(false);
       });
   };
 
@@ -156,67 +173,27 @@ function HomeContent() {
               </div>
             </div>
 
-            <Link href="/DetailRecipe">
-              <div
-                className={`${styleHome.cardPopular} ${styleHome.link} card mb-4`}
-              >
-                <div className="row align-items-center">
-                  <div className="col-4">
-                    <div className={styleHome.imgPopular}>
-                      <Image
-                        src="/images/salmon.jpg"
-                        alt="Card image"
-                        width="225"
-                        height="225"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-8">
-                    <div className="m-2">
-                      <h3 className={styleHome.namePopular}>Teriyaki Salmon</h3>
-                      <p className={styleHome.taste}>spicy, salted</p>
-                      <Image
-                        className={styleHome.star}
-                        src="/images/star.svg"
-                        alt="Star"
-                        width="25"
-                        height="25"
-                      />
-                      <span className={styleHome.taste}>{"  "}4.7</span>
-                    </div>
+            {loadPopular ? (
+              <>
+                <div className="col">
+                  <div className="card">
+                    <div className={styleHome.animatedBg} />
                   </div>
                 </div>
-              </div>
-            </Link>
-
-            <div className={`${styleHome.cardPopular} card mb-4`}>
-              <div className="row align-items-center">
-                <div className="col-4">
-                  <div className={styleHome.imgPopular}>
-                    <Image
-                      src="/images/tuna.jpg"
-                      alt="Card image"
-                      width="225"
-                      height="225"
-                    />
-                  </div>
-                </div>
-                <div className="col-8">
-                  <div className="m-2">
-                    <h3 className={styleHome.namePopular}>Sushi Tuna</h3>
-                    <p className={styleHome.taste}>spicy, salted</p>
-                    <Image
-                      className={styleHome.star}
-                      src="/images/star.svg"
-                      alt="Star"
-                      width="25"
-                      height="25"
-                    />
-                    <span className={styleHome.taste}>{"  "}4.7</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </>
+            ) : (
+              <>
+                {popularRecipe.map((item) => (
+                  <PopularRecipe
+                    key={item?.id_recipe}
+                    name={item?.recipe_name}
+                    foto={item?.recipe_image}
+                    taste={item?.taste}
+                    like={item?.jumlah}
+                  />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

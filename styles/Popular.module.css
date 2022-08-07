@@ -20,13 +20,13 @@
 
 .variant {
     margin: 0;
-    font-size: 20px;
+    font-size: large;
     color: #B6B6B6;
 }
 
 .taste {
-    font-size: large;
-    font-weight: 600;
+    font-size: medium;
+    font-weight: 400;
 }
 
 .icon {
