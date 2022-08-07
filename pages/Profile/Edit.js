@@ -1,7 +1,7 @@
 import styleEdit from "../../styles/Edit.module.css";
 import stylePopular from "../../styles/Popular.module.css";
 import Link from "next/link";
-import { FiChevronLeft } from "react-icons/fi";
+import { FiChevronLeft, FiEdit } from "react-icons/fi";
 
 function Edit() {
   return (
@@ -15,10 +15,13 @@ function Edit() {
                   <FiChevronLeft className={stylePopular.back} />
                 </div>
               </Link>
-              <div className="col-10">
+              <div className="col-8">
                 <h4 className={`${stylePopular.menuTag} text-center`}>
                   Edit Profile
                 </h4>
+              </div>
+              <div className="col-2">
+              <FiEdit className={stylePopular.back} />
               </div>
             </div>
 

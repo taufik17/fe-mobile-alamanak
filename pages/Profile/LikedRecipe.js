@@ -1,14 +1,41 @@
-import styleHome from "../../styles/Home.module.css";
+import React, { useState, useEffect } from "react";
 import stylePopular from "../../styles/Popular.module.css";
+import styleProfile from "../../styles/Profile.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { FiChevronLeft } from "react-icons/fi";
+import { FiChevronLeft, FiTrash } from "react-icons/fi";
+import { BiLike } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import Loader from "react-fullpage-custom-loader";
 
 function LikedRecipe() {
+  const { auth } = useSelector((state) => state);
+
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (auth?.token == null) {
+      router.replace("/");
+      setIsLoadingPage(false);
+    } else {
+      setIsAuth(true);
+      setIsLoadingPage(false);
+    }
+  });
+
+
   return (
     <>
+    {isAuth ? (
+        <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
+      ) : (
+        <Loader sentences={[]} wrapperBackgroundColor="black" />
+      )}
       <div className="container">
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-md-auto mb-5 mt-4">
             <div className="row align-items-center mb-4">
               <Link href="/Profile">
@@ -16,52 +43,43 @@ function LikedRecipe() {
                   <FiChevronLeft className={stylePopular.back} />
                 </div>
               </Link>
-              <div className="col-10">
+              <div className="col-8">
                 <h4 className={`${stylePopular.menuTag} text-center`}>
                   Liked Recipe
                 </h4>
               </div>
-            </div>
-
-            <div className={`${styleHome.cardPopular} card mb-4`}>
-              <div className="row align-items-center">
-                <div className={`${stylePopular.rmPadRight} col-3`}>
-                  <div className={stylePopular.imgPopular}>
-                    <Image
-                      src="/images/Margherita.jpg"
-                      alt="Card image"
-                      width="325"
-                      height="325"
-                    />
-                  </div>
-                </div>
-                <div className={`${stylePopular.rmPadRight} col-9`}>
-                  <div className="m-2">
-                    <h5 className={stylePopular.namePopular}>Margherita</h5>
-                    <p className={stylePopular.variant}>In Veg Pizza</p>
-                    <span className={stylePopular.taste}>Spicy</span>
-                  </div>
-                </div>
+              <div className="col-2">
+                <BiLike className={stylePopular.back} />
               </div>
             </div>
-            
-            <div className={`${styleHome.cardPopular} card mb-4`}>
+
+            <div className={`${styleProfile.cardPopular} card mb-4`}>
               <div className="row align-items-center">
-                <div className={`${stylePopular.rmPadRight} col-3`}>
-                  <div className={stylePopular.imgPopular}>
-                    <Image
-                      src="/images/melon.jpg"
-                      alt="Card image"
-                      width="325"
-                      height="325"
-                    />
+                <div className={`${styleProfile.rmPadRight} col-3`}>
+                  <Image
+                    className={styleProfile.imgPopular}
+                    src="/images/vegan.jpg"
+                    alt="Card image"
+                    width="100%"
+                    height="100%"
+                    layout="responsive"
+                  />
+                </div>
+                <div className={`${stylePopular.rmPadRight} col-6`}>
+                  <div className="m-2">
+                    <h6 className={stylePopular.namePopular}>Veg Loaded</h6>
+                    <p className={styleProfile.variant}>In Veg Pizza</p>
+                    <span className={styleProfile.taste}>Spicy</span>
                   </div>
                 </div>
-                <div className={`${stylePopular.rmPadRight} col-9`}>
-                  <div className="m-2">
-                    <h5 className={stylePopular.namePopular}>Melon</h5>
-                    <p className={stylePopular.variant}>In Veg Pizza</p>
-                    <span className={stylePopular.taste}>Fresh</span>
+
+                <div className="col-3">
+                  <div className="m-0">
+                    <span>
+                      <FiTrash
+                        className={`${styleProfile.icon} ${styleProfile.delete} mx-1`}
+                      />
+                    </span>
                   </div>
                 </div>
               </div>
@@ -70,7 +88,7 @@ function LikedRecipe() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default LikedRecipe
+export default LikedRecipe;

@@ -132,7 +132,7 @@ function Index() {
             <div className="col mt-5">
               <div className="d-grid mb-5 pt-5 mx-5">
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger bg-maroon"
                   type="button"
                   onClick={handleLogout}
                 >
