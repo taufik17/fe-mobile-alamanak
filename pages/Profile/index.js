@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from "react";
 import NavbarBottom from "../../components/navbarBottom";
 import { FiUser, FiChevronRight, FiAward, FiBookmark } from "react-icons/fi";
 import Swal from "sweetalert2";
@@ -8,14 +9,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Loader from "react-fullpage-custom-loader";
 import * as Type from "../../redux/auth/type";
 
 function Index() {
   const { auth } = useSelector((state) => state);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const dispacth = useDispatch();
   const router = useRouter();
 
-  console.log("ini auth",auth);
+  useEffect(() => {
+    if (auth?.token == null) {
+      router.replace("/");
+      setIsLoadingPage(false);
+    } else {
+      setIsAuth(true);
+      setIsLoadingPage(false);
+    }
+  });
 
   const handleLogout = () => {
     Swal.fire({
@@ -35,6 +47,11 @@ function Index() {
   };
   return (
     <>
+    {isAuth ? (
+        <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
+      ) : (
+        <Loader sentences={[]} wrapperBackgroundColor="black" />
+      )}
       <div className="container px-0">
         <NavbarBottom />
         <div className={styleProfile.bgOrange}>
