@@ -19,7 +19,6 @@ function Popular() {
     axios
       .get("/api/recipe/popular")
       .then((res) => {
-        console.log(res?.data?.data);
         setPopularRecipe(res?.data?.data);
         setLoadPopular(false);
       })

@@ -40,8 +40,8 @@ function PopularRecipe(props) {
               <div className="col-4">
                 <div className="m-0">
                   <span>
-                    <Saved key={key} id_recipe={id_recipe} id_user={id_user} />
-                    <Like key={key} id_recipe={id_recipe} id_user={id_user} />
+                    <Saved key={key} id_recipe={id_recipe} id_user={id_user} name={name} />
+                    <Like key={key} id_recipe={id_recipe} id_user={id_user} name={name} />
                   </span>
                 </div>
               </div>
