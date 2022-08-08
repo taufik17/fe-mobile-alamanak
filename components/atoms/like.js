@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../components/spinner";
 import Swal from "sweetalert2";
-import Router from "next/router";
 import axios from "axios";
 
 function Like(props) {

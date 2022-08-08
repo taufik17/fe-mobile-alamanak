@@ -3,12 +3,18 @@ import { FiBookmark, FiAward } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Loading from "../../components/spinner";
+import Swal from "sweetalert2";
 
 function Saved(props) {
   const { auth } = useSelector((state) => state);
-  const { key, id_recipe, id_user } = props;
+  const { key, id_recipe, id_user, name } = props;
   const [savedRecipe, setSavedRecipe] = useState([]);
   const [isMyRecipe, setIsMyRecipe] = useState(false);
+
+  const [processSaveUsave, setprocessSaveUsave] = useState(false);
+  const [saveState, setSaveState] = useState(true);
+  const [unSaveState, setUnsaveState] = useState(false);
 
   useEffect(() => {
     getSaved();
@@ -34,6 +40,81 @@ function Saved(props) {
         console.log(err);
       });
   };
+
+  const handleSave = (props) => {
+    setprocessSaveUsave(true);
+    const { name, id_recipe } = props;
+    axios
+      .post("/api/recipe/doSave", {
+        idUser: auth?.profile?.id_user,
+        idRecipe: id_recipe,
+        token: auth?.token,
+      })
+      .then((res) => {
+        setprocessSaveUsave(false);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+          position: "bottom",
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: `Success Save Recipe ${name}`,
+        });
+        setUnsaveState(true);
+        setSaveState(true);
+        // Router.reload(window.location.pathname)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleUnSave = (props) => {
+    setprocessSaveUsave(true);
+    const { name, id_recipe } = props;
+    axios
+      .post("/api/recipe/doUnsave", {
+        idUser: auth?.profile?.id_user,
+        idRecipe: id_recipe,
+        token: auth?.token,
+      })
+      .then((res) => {
+        setprocessSaveUsave(false);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+          position: "bottom",
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: `Success Unsave ${name}`,
+        });
+        setUnsaveState(false);
+        setSaveState(false);
+        // Router.reload(window.location.pathname)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       {isMyRecipe ? (
@@ -44,15 +125,57 @@ function Saved(props) {
         </>
       ) : (
         <>
-          {savedRecipe.length > 0 ? (
+          {processSaveUsave ? (
             <>
-              <FiBookmark
-                className={`${stylePopular.icon} ${stylePopular.active} mx-1`}
-              />
+              <Loading />
             </>
           ) : (
             <>
-              <FiBookmark className={`${stylePopular.icon} mx-1`} />
+              {savedRecipe.length > 0 ? (
+                <>
+                  {saveState ? (
+                    <>
+                      <FiBookmark
+                        className={`${stylePopular.icon} ${stylePopular.active} mx-1 cursor`}
+                        onClick={(e) => {
+                          handleUnSave({ name, id_recipe });
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <FiBookmark
+                        className={`${stylePopular.icon} mx-1 cursor`}
+                        onClick={(e) => {
+                          handleSave({ name, id_recipe });
+                        }}
+                      />
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  {unSaveState ? (
+                    <>
+                      <FiBookmark
+                        className={`${stylePopular.icon} ${stylePopular.active} mx-1 cursor`}
+                        onClick={(e) => {
+                          handleUnSave({ name, id_recipe });
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <FiBookmark
+                        className={`${stylePopular.icon} mx-1 cursor`}
+                        onClick={(e) => {
+                          handleSave({ name, id_recipe });
+                        }}
+                      />
+                    </>
+                  )}
+                </>
+              )}
             </>
           )}
         </>
