@@ -36,7 +36,7 @@ function LikedRecipe() {
       )}
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-auto mb-5 mt-4">
+          <div className="col mb-5 mt-4">
             <div className="row align-items-center mb-4">
               <Link href="/Profile">
                 <div className={`${stylePopular.link} col-2`}>

@@ -10,6 +10,8 @@ function NavbarBottom(props) {
   const { auth } = useSelector((state) => state);
   const router = useRouter();
 
+  console.log("nav bottom", auth);
+
   switch (router.pathname) {
     case "/":
       var home = navStyle.active;
@@ -37,7 +39,7 @@ function NavbarBottom(props) {
               style={{ height: "50px" }}
             >
               <ul className="navbar-nav nav-justified w-100">
-                {!auth?.token ? (
+                {auth?.token == null ? (
                   <>
                     <Link href="/">
                       <li className={`${navStyle.navItem} ${home}`}>

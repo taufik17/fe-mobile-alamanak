@@ -19,7 +19,8 @@ function Popular() {
     axios
       .get("/api/recipe/popular")
       .then((res) => {
-        setPopularRecipe(res?.data?.data.slice(0, 5));
+        console.log(res?.data?.data);
+        setPopularRecipe(res?.data?.data);
         setLoadPopular(false);
       })
       .catch((err) => {
@@ -64,11 +65,13 @@ function Popular() {
                 {popularRecipe.map((item) => (
                   <PopularRecipe
                     key={item?.id_recipe}
+                    id_recipe={item?.id_recipe}
                     name={item?.recipe_name}
                     foto={item?.recipe_image}
                     taste={item?.taste}
                     like={item?.jumlah}
                     category={item?.name_category}
+                    id_user={item?.id_user}
                   />
                 ))}
               </>
