@@ -190,6 +190,7 @@ function HomeContent() {
                     foto={item?.recipe_image}
                     taste={item?.taste}
                     like={item?.jumlah}
+                    id_recipe={item?.id_recipe}
                   />
                 ))}
               </>

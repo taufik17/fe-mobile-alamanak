@@ -91,15 +91,25 @@ function MyRecipe() {
               </>
             ) : (
               <>
-                {myRecipe.map((item) => (
-                  <MyRecipeComp
-                    key={item?.id_recipe}
-                    name={item?.recipe_name}
-                    foto={item?.recipe_image}
-                    category={item?.name_category}
-                    taste={item?.taste}
-                  />
-                ))}
+                {myRecipe.length > 0 ? (
+                  <>
+                    {myRecipe.map((item) => (
+                      <MyRecipeComp
+                        key={item?.id_recipe}
+                        name={item?.recipe_name}
+                        foto={item?.recipe_image}
+                        category={item?.name_category}
+                        taste={item?.taste}
+                      />
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <div className="col text-center">
+                      <h4>Not Found</h4>
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>

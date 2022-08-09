@@ -4,10 +4,17 @@ import styleHome from "../../styles/Home.module.css";
 import { BiLike } from "react-icons/bi";
 
 function popularRecipe(props) {
-  const { key, name, foto, taste, like } = props;
+  const { name, foto, taste, like, id_recipe } = props;
+  const send = {id_recipe, name};
   return (
     <>
-      <Link href="/DetailRecipe" passHref>
+      <Link
+        href={{
+          pathname: "/DetailRecipe",
+          query: send, // the data
+        }}
+        passHref
+      >
         <a className="rm-decoration">
           <div
             className={`${styleHome.cardPopular} ${styleHome.link} card mb-4`}
