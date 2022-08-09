@@ -8,10 +8,15 @@ import { BiLike } from "react-icons/bi";
 import Link from "next/link";
 import Ingredients from "../components/content/ingredients";
 import VideoStep from "../components/content/videoStep";
+import Head from "next/head";
 
 function DetailRecipe() {
   return (
     <>
+      <Head>
+        <title>My page title</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <div className="container px-0">
         <Image
           className={styleDetailRecipe.imgProfile}

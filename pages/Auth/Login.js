@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import * as Type from "../../redux/auth/type";
 import Loader from "react-fullpage-custom-loader";
+import Head from "next/head";
 
 function Login() {
   const dispatch = useDispatch();
@@ -70,6 +71,10 @@ function Login() {
 
   return (
     <>
+      <Head>
+        <title>Login | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       {loadLogin ? (
         <>
           <Loader sentences={[]} />

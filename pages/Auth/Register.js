@@ -14,6 +14,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Loading from "../../components/spinner";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function Register() {
   const router = useRouter();
@@ -67,6 +68,10 @@ function Register() {
   });
   return (
     <>
+      <Head>
+        <title>Register Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <div className={`container text-center`}>
         <div className="row justify-content-lg-center">
           <div className="col">

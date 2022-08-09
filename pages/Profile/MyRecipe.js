@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Loader from "react-fullpage-custom-loader";
 import MyRecipeComp from "../../components/molecules/myRecipe";
+import Head from "next/head";
 
 function MyRecipe() {
   const { auth } = useSelector((state) => state);
@@ -52,6 +53,10 @@ function MyRecipe() {
 
   return (
     <>
+      <Head>
+        <title>My Recipe | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       {isAuth ? (
         <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
       ) : (

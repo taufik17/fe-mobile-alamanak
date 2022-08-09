@@ -7,6 +7,7 @@ import { FiBookOpen, FiVideo } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Loader from "react-fullpage-custom-loader";
+import Head from "next/head";
 
 function AddRecipe() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +33,10 @@ function AddRecipe() {
   });
   return (
     <>
+      <Head>
+        <title>Add Recipe | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       {isAuth ? (
         <> {isLoading ? <Loader sentences={[]} /> : <> </>} </>
       ) : (

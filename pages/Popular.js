@@ -6,6 +6,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 import PopularRecipe from "../components/molecules/popularRecipeAll";
 import axios from "axios";
+import Head from "next/head";
 
 function Popular() {
   const [popularRecipe, setPopularRecipe] = useState([]);
@@ -32,6 +33,10 @@ function Popular() {
 
   return (
     <>
+      <Head>
+        <title>Popular Recipe</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <div className="container">
         <div className="row">
           <div className="col-md-auto mb-5 mt-4">

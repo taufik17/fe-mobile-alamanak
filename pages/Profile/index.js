@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Loader from "react-fullpage-custom-loader";
 import * as Type from "../../redux/auth/type";
+import Head from "next/head";
 
 function Index() {
   const { auth } = useSelector((state) => state);
@@ -47,6 +48,10 @@ function Index() {
   };
   return (
     <>
+      <Head>
+        <title>Profile | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       {isAuth ? (
         <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
       ) : (

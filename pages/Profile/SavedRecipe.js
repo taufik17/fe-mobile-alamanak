@@ -7,6 +7,7 @@ import { FiChevronLeft, FiTrash, FiBookmark } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Loader from "react-fullpage-custom-loader";
+import Head from "next/head";
 
 function LikedRecipe() {
   const { auth } = useSelector((state) => state);
@@ -28,6 +29,10 @@ function LikedRecipe() {
 
   return (
     <>
+      <Head>
+        <title>Saved Recipe | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
     {isAuth ? (
         <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
       ) : (

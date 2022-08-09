@@ -2,10 +2,15 @@ import styleEdit from "../../styles/Edit.module.css";
 import stylePopular from "../../styles/Popular.module.css";
 import Link from "next/link";
 import { FiChevronLeft, FiEdit } from "react-icons/fi";
+import Head from "next/head";
 
 function Edit() {
   return (
     <>
+      <Head>
+        <title>Edit Profile | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <div className="container">
         <div className="row">
           <div className="col mb-5 mt-4">

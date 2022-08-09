@@ -8,6 +8,7 @@ import { BiLike } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Loader from "react-fullpage-custom-loader";
+import Head from "next/head";
 
 function LikedRecipe() {
   const { auth } = useSelector((state) => state);
@@ -29,6 +30,10 @@ function LikedRecipe() {
 
   return (
     <>
+      <Head>
+        <title>Like Recipe | Alamanak</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
     {isAuth ? (
         <> {isLoadingPage ? <Loader sentences={[]} /> : <> </>} </>
       ) : (
