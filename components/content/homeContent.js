@@ -113,7 +113,7 @@ function HomeContent() {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-md-auto mb-5">
+          <div className="col mb-5">
             <div className={`${styleHome.popular} mb-4`}>
               <h5>Popular for You</h5>
               {loadCategory ? (

@@ -39,7 +39,7 @@ function Popular() {
       </Head>
       <div className="container">
         <div className="row">
-          <div className="col-md-auto mb-5 mt-4">
+          <div className="col mb-5 mt-4">
             <div className="row align-items-center mb-4">
               <Link href="/">
                 <div className={`${stylePopular.link} col-2`}>

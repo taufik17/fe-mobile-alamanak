@@ -10,8 +10,6 @@ function NavbarBottom(props) {
   const { auth } = useSelector((state) => state);
   const router = useRouter();
 
-  console.log("nav bottom", auth);
-
   switch (router.pathname) {
     case "/":
       var home = navStyle.active;
