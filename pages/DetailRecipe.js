@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Head from "next/head";
+import Swal from "sweetalert2";
+import Loading from "../components/spinner";
 import Comment from "../components/atoms/comment";
 
 function DetailRecipe() {
@@ -25,9 +27,12 @@ function DetailRecipe() {
   const [loadDetail, setLoadDetail] = useState(true);
 
   const [dataComment, setDataComment] = useState([]);
-  const [loadComment, setLoadComment] = useState(true);
+  const [loadComment, setLoadComment] = useState(null);
 
   const [isAuth, setIsAuth] = useState(false);
+
+  const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getDetail();
@@ -55,6 +60,7 @@ function DetailRecipe() {
   };
 
   const getComment = () => {
+    setLoadComment(true);
     axios
       .post("/api/comment/getComment", { idRecipe: data?.id_recipe })
       .then((res) => {
@@ -64,6 +70,41 @@ function DetailRecipe() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const postComment = () => {
+    setIsLoading(true);
+    getComment();
+    axios
+      .post("/api/comment/postComment", {
+        idUser: auth?.profile?.id_user,
+        comment,
+        idRecipe: data?.id_recipe,
+      })
+      .then((res) => {
+        setIsLoading(false);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+          position: "bottom",
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: `${res?.data}`,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    getComment();
   };
 
   return (
@@ -154,25 +195,35 @@ function DetailRecipe() {
                       <div className="mt-2 mx-4 mb-5">
                         {isAuth ? (
                           <>
-                            <div className="form-floating">
-                              <textarea
-                                className={`${styleDetailRecipe.comment} form-control`}
-                                placeholder="Leave a comment here"
-                                style={{ height: "100px" }}
-                              ></textarea>
-                              <label htmlFor="floatingTextarea2">
-                                Comment:
-                              </label>
-                            </div>
+                            <form
+                              onSubmit={(e) => {
+                                e.preventDefault();
+                                postComment();
+                              }}
+                            >
+                              <div className="form-floating">
+                                <textarea
+                                  className={`${styleDetailRecipe.comment} form-control`}
+                                  placeholder="Leave a comment here"
+                                  required
+                                  onChange={(e) => setComment(e.target.value)}
+                                  style={{ height: "100px" }}
+                                ></textarea>
+                                <label htmlFor="floatingTextarea2">
+                                  Comment:
+                                </label>
+                              </div>
 
-                            <div className="d-grid gap-2 mt-4">
-                              <button
-                                className={`${styleDetailRecipe.btnPostComment} btn`}
-                                type="submit"
-                              >
-                                Post Comment
-                              </button>
-                            </div>
+                              <div className="d-grid gap-2 mt-4">
+                                <button
+                                  className={`${styleDetailRecipe.btnPostComment} btn`}
+                                  type="submit"
+                                  disabled={isLoading}
+                                >
+                                  {isLoading ? <Loading /> : "Post Comment"}
+                                </button>
+                              </div>
+                            </form>
                           </>
                         ) : (
                           <></>
