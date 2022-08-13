@@ -11,19 +11,36 @@ import Ingredients from "../components/content/ingredients";
 import VideoStep from "../components/content/videoStep";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import Head from "next/head";
+import Comment from "../components/atoms/comment";
 
 function DetailRecipe() {
+  const { auth } = useSelector((state) => state);
   const router = useRouter();
   const data = router.query;
 
   const [dataDetail, setDataDetail] = useState([]);
   const [loadDetail, setLoadDetail] = useState(true);
 
+  const [dataComment, setDataComment] = useState([]);
+  const [loadComment, setLoadComment] = useState(true);
+
+  const [isAuth, setIsAuth] = useState(false);
+
   useEffect(() => {
     getDetail();
+    getComment();
   }, []);
+
+  useEffect(() => {
+    if (auth?.token == null) {
+      setIsAuth(false);
+    } else {
+      setIsAuth(true);
+    }
+  });
 
   const getDetail = () => {
     axios
@@ -34,9 +51,18 @@ function DetailRecipe() {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const getComment = () => {
+    axios
+      .post("/api/comment/getComment", { idRecipe: data?.id_recipe })
+      .then((res) => {
+        setDataComment(res?.data?.data);
+        setLoadComment(false);
       })
-      .finally(() => {
-        setLoadDetail(false);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -87,7 +113,7 @@ function DetailRecipe() {
                           {item?.recipe_name}
                         </h3>
                         <p className={`${styleDetailRecipe.creator} px-3`}>
-                          By Chef Ronald Humson
+                          By {item?.name}
                         </p>
                       </div>
                       <div className="col-4 text-center align-self-end">
@@ -126,44 +152,66 @@ function DetailRecipe() {
                       </Tabs>
 
                       <div className="mt-2 mx-4 mb-5">
-                        <div className="form-floating">
-                          <textarea
-                            className={`${styleDetailRecipe.comment} form-control`}
-                            placeholder="Leave a comment here"
-                            style={{ height: "100px" }}
-                          ></textarea>
-                          <label htmlFor="floatingTextarea2">Comment:</label>
-                        </div>
+                        {isAuth ? (
+                          <>
+                            <div className="form-floating">
+                              <textarea
+                                className={`${styleDetailRecipe.comment} form-control`}
+                                placeholder="Leave a comment here"
+                                style={{ height: "100px" }}
+                              ></textarea>
+                              <label htmlFor="floatingTextarea2">
+                                Comment:
+                              </label>
+                            </div>
 
-                        <div className="d-grid gap-2 mt-4">
-                          <button
-                            className={`${styleDetailRecipe.btnPostComment} btn`}
-                            type="submit"
-                          >
-                            Post Comment
-                          </button>
-                        </div>
+                            <div className="d-grid gap-2 mt-4">
+                              <button
+                                className={`${styleDetailRecipe.btnPostComment} btn`}
+                                type="submit"
+                              >
+                                Post Comment
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <></>
+                        )}
 
                         <div className="row mt-4 align-items-center">
                           <p>Comment:</p>
-                          <div className={`${stylePopular.rmPadRight} col-2`}>
-                            <div
-                              className={styleDetailRecipe.imgProfileComment}
-                            >
-                              <Image
-                                src="/images/profile.jpg"
-                                alt="Card image"
-                                width="100%"
-                                height="100%"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-10">
-                            <h6>Ayudia</h6>
-                            <small>
-                              Nice recipe. simple and delicious, thankyou
-                            </small>
-                          </div>
+                          {loadComment ? (
+                            <>
+                              <div className="col mt-2">
+                                <div className="card">
+                                  <div className={styleHome.animatedBg} />
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              {dataComment.length > 0 ? (
+                                <>
+                                  {dataComment.map((item) => (
+                                    <>
+                                      <Comment
+                                        id_comment={item?.id_comment}
+                                        comment={item?.text_comment}
+                                        name={item?.name}
+                                        img={item?.user_image}
+                                      />
+                                    </>
+                                  ))}
+                                </>
+                              ) : (
+                                <>
+                                  <small className="text-center text-black-50">
+                                    Not Found
+                                  </small>
+                                </>
+                              )}
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
