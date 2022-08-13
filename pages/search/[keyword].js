@@ -6,12 +6,14 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
 import PopularRecipe from "../../components/molecules/popularRecipeAll";
+import NoDataComp from "../../components/atoms/noDataComp";
 
 function Search() {
   const router = useRouter();
   const { keyword } = router.query;
 
   const [resultSearch, setResultSearch] = useState([]);
+  const [countData, setCountData] = useState([]);
   const [loadResult, setLoadResult] = useState(true);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ function Search() {
     axios
       .post("/api/recipe/search", { keyword })
       .then((res) => {
+        setCountData(res?.data.jumlahData)
         setResultSearch(res?.data?.data);
         setLoadResult(false);
       })
@@ -52,15 +55,24 @@ function Search() {
                 </>
               ) : (
                 <>
-                  {resultSearch?.map((item) => (
-                    <PopularRecipe
-                      key={item?.id_recipe}
-                      id_recipe={item?.id_recipe}
-                      name={item?.recipe_name}
-                      foto={item?.recipe_image}
-                      taste={item?.taste}
-                    />
-                  ))}
+                <p className={styleHome.result}>Keyword: {keyword}, {countData} Result. </p>
+                  {resultSearch?.length > 0 ? (
+                    <>
+                      {resultSearch?.map((item) => (
+                        <PopularRecipe
+                          key={item?.id_recipe}
+                          id_recipe={item?.id_recipe}
+                          name={item?.recipe_name}
+                          foto={item?.recipe_image}
+                          taste={item?.taste}
+                        />
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      <NoDataComp />
+                    </>
+                  )}
                 </>
               )}
             </div>

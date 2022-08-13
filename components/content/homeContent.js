@@ -155,6 +155,7 @@ function HomeContent() {
                   {newRecipe.map((item) => (
                     <NewRecipe
                       key={item?.id_recipe}
+                      id_recipe={item?.id_recipe}
                       name={item?.recipe_name}
                       foto={item?.recipe_image}
                     />

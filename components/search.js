@@ -11,15 +11,6 @@ function Search() {
 
   const handleSearch = () => {
     router.push(`/search/${keyword}`);
-    // axios
-    //   .post("/api/recipe/search", { keyword })
-    //   .then((res) => {
-    //     console.log("test",res?.data)
-    //     router.push(`/search/${keyword}`);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   return (

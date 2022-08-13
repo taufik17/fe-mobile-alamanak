@@ -29,7 +29,6 @@ function DetailRecipe() {
     axios
       .post("/api/recipe/getDetail", { idRecipe: data?.id_recipe })
       .then((res) => {
-        console.log(res?.data?.data);
         setDataDetail(res?.data?.data);
         setLoadDetail(false);
       })
@@ -51,7 +50,7 @@ function DetailRecipe() {
         <div className="row">
           {loadDetail ? (
             <>
-              <div className="col">
+              <div className="col mt-2">
                 <div className="card">
                   <div className={styleHome.animatedBg} />
                 </div>
