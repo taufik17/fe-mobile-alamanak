@@ -130,6 +130,7 @@ function HomeContent() {
                     {categoryRecipe.map((item) => (
                       <CategoryRecipe
                         key={item?.id_category}
+                        id_category={item?.id_category}
                         name={item?.name_category}
                         foto={item?.image}
                       />

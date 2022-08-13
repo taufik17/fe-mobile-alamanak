@@ -3,8 +3,8 @@ import Image from "next/image";
 import styleHome from "../../styles/Home.module.css";
 import { BiLike } from "react-icons/bi";
 
-function popularRecipe(props) {
-  const { name, foto, taste, like, id_recipe } = props;
+function popularRecipe(key) {
+  const { name, foto, taste, like, id_recipe } = key;
   const send = {id_recipe, name};
   return (
     <>

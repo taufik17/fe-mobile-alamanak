@@ -33,7 +33,6 @@ function Saved(props) {
         idRecipe: id_recipe,
       })
       .then((res) => {
-        console.log("saved", res.data);
         setSavedRecipe(res?.data?.data);
       })
       .catch((err) => {

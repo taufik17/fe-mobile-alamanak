@@ -30,7 +30,6 @@ function Search() {
       });
   };
 
-  console.log("result", resultSearch);
   return (
     <>
       <Head>
