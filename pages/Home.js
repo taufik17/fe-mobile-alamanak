@@ -2,6 +2,7 @@ import NavbarBottom from "../components/navbarBottom";
 import Search from "../components/search";
 import HomeContent from "../components/content/homeContent";
 import Head from "next/head";
+
 function Home() {
   return (
     <>

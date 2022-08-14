@@ -5,9 +5,10 @@ function Ingredients(props) {
   return (
     <>
       <div className={`${styleDetailRecipe.ingrContent} card mt-3 p-3 mb-4`}>
-        <p>
+        {/* <p>
           {data}
-        </p>
+        </p> */}
+        <p dangerouslySetInnerHTML={{ __html: data }}></p>
       </div>
     </>
   );
