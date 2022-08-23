@@ -8,7 +8,7 @@ function Ingredients(props) {
         {/* <p>
           {data}
         </p> */}
-        <p dangerouslySetInnerHTML={{ __html: data }}></p>
+        <div dangerouslySetInnerHTML={{ __html: data }}></div>
       </div>
     </>
   );

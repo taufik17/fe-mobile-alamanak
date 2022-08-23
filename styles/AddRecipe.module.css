@@ -1,5 +1,5 @@
 .menuTag {
-    color: #F1CD31;
+    color: #caa500;
 }
 
 .descText {
@@ -56,10 +56,56 @@
     font-size: larger;
     font-weight: 500;
     color: white;
+    margin-bottom: 100px;
   }
 
   .btnPost:hover {
     font-size: larger;
     font-weight: 600;
     color: white;
+  }
+
+  .errorMsg {
+    color: red;
+    font-size: 24px;
+    margin: 3px 0;
+  }
+
+  .imgPreview {
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #a8a8a8;
+  }
+
+  .imgPreview input[type="file"] {
+    display: none;
+  }
+
+  .iconUpload {
+    cursor: pointer;
+    font-size: 50px;
+  }
+
+  .rmImage {
+    width: 100%;
+    position: relative;
+    top: -34px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.445);
+    color: white;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .rmImage:hover {
+    transition: 0.5s;
+    background-color: rgb(32, 32, 32);
   }
