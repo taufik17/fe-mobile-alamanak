@@ -1,20 +1,20 @@
 import React from "react";
-import TaskList from "../components/atoms/taskList";
+import FormVideoLink from "../atoms/formvideolink";
 
 class Form extends React.Component {
   state = {
-    taskList: [
+    linkVideo: [
       {
-        projectName: "",
+        videoLink: "",
       },
     ],
   };
 
   handleChange = (e) => {
     
-    if (["projectName"].includes(e.target.name)) {
-      let taskList = [...this.state.taskList];
-      taskList[e.target.dataset.id][e.target.name] = e.target.value;
+    if (["videoLink"].includes(e.target.name)) {
+      let linkVideo = [...this.state.linkVideo];
+      linkVideo[e.target.dataset.id][e.target.name] = e.target.value;
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
@@ -25,10 +25,10 @@ class Form extends React.Component {
 
   addNewRow = () => {
     this.setState((prevState) => ({
-      taskList: [
-        ...prevState.taskList,
+      linkVideo: [
+        ...prevState.linkVideo,
         {
-          projectName: "",
+          videoLink: "",
         },
       ],
     }));
@@ -36,7 +36,7 @@ class Form extends React.Component {
 
   deteteRow = (index) => {
     this.setState({
-      taskList: this.state.taskList.filter((s, sindex) => index !== sindex),
+      linkVideo: this.state.linkVideo.filter((s, sindex) => index !== sindex),
     });
   };
   handleSubmit = (e) => {
@@ -47,19 +47,19 @@ class Form extends React.Component {
   };
   clickOnDelete(record) {
     this.setState({
-      taskList: this.state.taskList.filter((r) => r !== record),
+      linkVideo: this.state.linkVideo.filter((r) => r !== record),
     });
   }
   render() {
-    let { taskList } = this.state; //let { notes, date, description, taskList } = this.state
+    let { linkVideo } = this.state; //let { notes, date, description, linkVideo } = this.state
     return (
       <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
         <table className="table">
           <tbody>
-            <TaskList
+            <FormVideoLink
               add={this.addNewRow}
               delete={this.clickOnDelete.bind(this)}
-              taskList={taskList}
+              linkVideo={linkVideo}
             />
           </tbody>
         </table>

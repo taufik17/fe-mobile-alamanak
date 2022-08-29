@@ -109,3 +109,7 @@
     transition: 0.5s;
     background-color: rgb(32, 32, 32);
   }
+
+  .w100 {
+    width: auto;
+  }

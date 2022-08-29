@@ -2,19 +2,20 @@ import { FiVideo, FiPlus, FiMinus } from "react-icons/fi";
 import styleAddRecipe from "../../styles/AddRecipe.module.css";
 import React from "react";
 
-const TaskList = (props) => {
-  return props.taskList.map((val, idx) => {
-    let projectName = projectName - idx;
+const FormVideoLink = (props) => {
+  return props.linkVideo.map((val, idx) => {
+    let videoLink = videoLink - idx;
     return (
       <>
-        <tr key={val.index}>
+      <br />
+        <tr key={val.index} style={{borderStyle: "none !important" }}>
           <td className="p-0">
             <div className={`${styleAddRecipe.search}`}>
               <input
                 type="text"
-                name="projectName"
+                name="videoLink"
                 data-id={idx}
-                id={projectName}
+                id={videoLink}
                 className={`${styleAddRecipe.formControl} form-control`}
                 placeholder="Add Video Link"
                 required
@@ -49,4 +50,4 @@ const TaskList = (props) => {
     );
   });
 };
-export default TaskList;
+export default FormVideoLink;

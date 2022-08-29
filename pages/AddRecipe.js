@@ -7,7 +7,7 @@ import { FiBookOpen, FiVideo, FiUploadCloud } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Loader from "react-fullpage-custom-loader";
-import Tes from "../pages/Tes";
+import VideoLink from "../components/molecules/videoLink";
 import Head from "next/head";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -159,7 +159,7 @@ function AddRecipe() {
           </div>
 
           <div className="mt-4 mb-4">
-            <Tes/>
+            <VideoLink/>
           </div>
 
           <div className="text-center">
