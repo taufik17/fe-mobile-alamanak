@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Loader from "react-fullpage-custom-loader";
 import VideoLink from "../components/molecules/videoLink";
+import { Form } from 'react-bootstrap';
+import axios from "axios";
 import Head from "next/head";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -21,10 +23,13 @@ function AddRecipe() {
   const [ingredients, setIngredients] = useState("");
   const [imgPreview, setImgPreview] = useState(null);
   const [error, setError] = useState(false);
-  
-  const [videoData, setVideoData ] = useState(null);
+
+  const [category, setCategory] = useState([]);
+
+  const [videoData, setVideoData] = useState(null);
 
   console.log("data video", videoData);
+  console.log("Ingredients", ingredients);
 
   const router = useRouter();
   const { auth } = useSelector((state) => state);
@@ -34,9 +39,10 @@ function AddRecipe() {
       setIsLoading(false);
     } else {
       setIsAuth(true);
+      getCategory();
       setIsLoading(false);
     }
-  });
+  }, []);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#E5E5E5";
@@ -45,7 +51,19 @@ function AddRecipe() {
     };
   });
 
-  const handlePost = () => {};
+  const getCategory = () => {
+    axios
+      .post("/api/recipe/categoryRecipe")
+      .then((res) => {
+        setCategory(res?.data?.data);
+        console.log(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handlePost = () => { };
   const handleImageChange = (e) => {
     setError(false);
     const selected = e.target.files[0];
@@ -71,18 +89,17 @@ function AddRecipe() {
       ) : (
         <Loader sentences={[]} wrapperBackgroundColor="black" />
       )}
-      <div className="container">
+
+      <div className="container box-shadow text-center">
         <NavbarBottom />
-        <div className="row mt-4 align-items-center mb-4">
+        <div className="row pt-4 align-items-center mb-4">
           <div className="col">
             <h4 className={`${styleAddRecipe.menuTag} text-center`}>
               Add Your Recipe
             </h4>
           </div>
         </div>
-      </div>
 
-      <div className="container text-center">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -136,6 +153,22 @@ function AddRecipe() {
           )}
 
           <div className="mt-4">
+            <Form.Select aria-label="Default select example">
+              <option>Open this select menu</option>
+              {category.map((item) => (
+                <>
+                  <option value={item.id_category}>
+                    <>
+                      <img src={item.image} />
+                        <span>{item.name_category}</span>
+                      </>
+                    </option>
+                  </>
+              ))}
+                </Form.Select>
+          </div>
+
+          <div className="mt-4">
             <CKEditor
               editor={ClassicEditor}
               data="<h4>Deskripsi :</h4><p>&nbsp;</p><h4>Bahan :</h4><p>&nbsp;</p><h4>Cara Memasak :</h4><p>&nbsp;</p>"
@@ -159,7 +192,7 @@ function AddRecipe() {
           </div>
 
           <div className="mt-4 mb-4">
-            <VideoLink/>
+            <VideoLink />
           </div>
 
           <div className="text-center">

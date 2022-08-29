@@ -10,9 +10,11 @@ function Home() {
         <title>Alamanak - Ala Makanan Enak</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
-      <Search />
-      <HomeContent />
-      <NavbarBottom />
+      <div className="container box-shadow">
+        <Search />
+        <HomeContent />
+        <NavbarBottom />
+      </div>
     </>
   );
 }

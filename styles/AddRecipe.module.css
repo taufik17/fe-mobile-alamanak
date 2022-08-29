@@ -1,115 +1,121 @@
 .menuTag {
-    color: #caa500;
+  color: #caa500;
 }
 
 .descText {
-    color: #a8a8a8;
+  color: #a8a8a8;
 }
 
 .desc {
-    border: none;
+  border: none;
 }
 
 .desc:focus {
-    box-shadow: none;
-    border: 2px solid #efc81a;
+  box-shadow: none;
+  border: 2px solid #efc81a;
 }
 
-.desc:focus + label {
-    color: #efc81a;
+.desc:focus+label {
+  color: #efc81a;
 }
 
 .search {
-    border-radius: 15px;
-    position: relative;
-  }
-  
-  .search input {
-    border-radius: 15px;
-    height: 60px;
-    text-indent: 45px;
-    border: unset;
-  }
-  
-  .search input:focus {
-    box-shadow: none;
-    border: 2px solid #efc81a;
-  }
-  
-  .search input:focus::placeholder {
-    color: #efc81a;
-  }
-  
-  .search .icon {
-    color: #c4c4c4;
-    position: absolute;
-    font-size: 25px;
-    top: 18px;
-    left: 20px;
-  }
-  
-  .search input:focus + .icon {
-    color: #efc81a;
-  }
+  border-radius: 15px;
+  position: relative;
+}
 
-  .btnPost {
-    font-size: larger;
-    font-weight: 500;
-    color: white;
-    margin-bottom: 100px;
-  }
+.search input {
+  border-radius: 15px;
+  height: 60px;
+  text-indent: 45px;
+  border: unset;
+}
 
-  .btnPost:hover {
-    font-size: larger;
-    font-weight: 600;
-    color: white;
-  }
+.search input:focus {
+  box-shadow: none;
+  border: 2px solid #efc81a;
+}
 
-  .errorMsg {
-    color: red;
-    font-size: 24px;
-    margin: 3px 0;
-  }
+.search input:focus::placeholder {
+  color: #efc81a;
+}
 
-  .imgPreview {
-    border-radius: 20px;
-    width: 100%;
-    height: 250px;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #a8a8a8;
-  }
+.search .icon {
+  color: #c4c4c4;
+  position: absolute;
+  font-size: 25px;
+  top: 18px;
+  left: 20px;
+}
 
-  .imgPreview input[type="file"] {
-    display: none;
-  }
+.search input:focus+.icon {
+  color: #efc81a;
+}
 
-  .iconUpload {
-    cursor: pointer;
-    font-size: 50px;
-  }
+.btnPost {
+  font-size: larger;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 100px;
+}
 
-  .rmImage {
-    width: 100%;
-    position: relative;
-    top: -34px;
-    border: none;
-    background-color: rgba(0, 0, 0, 0.445);
-    color: white;
-    font-weight: 500;
-    padding: 5px;
-    border-radius: 0 0 20px 20px;
-  }
-  
-  .rmImage:hover {
-    transition: 0.5s;
-    background-color: rgb(32, 32, 32);
-  }
+.btnPost:hover {
+  font-size: larger;
+  font-weight: 600;
+  color: white;
+}
 
-  .w100 {
-    width: auto;
-  }
+.errorMsg {
+  color: red;
+  font-size: 24px;
+  margin: 3px 0;
+}
+
+.imgPreview {
+  border-radius: 20px;
+  width: 100%;
+  height: 250px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #a8a8a8;
+}
+
+.imgPreview input[type="file"] {
+  display: none;
+}
+
+.iconUpload {
+  cursor: pointer;
+  font-size: 50px;
+}
+
+.rmImage {
+  width: 100%;
+  position: relative;
+  top: -34px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.445);
+  color: white;
+  font-weight: 500;
+  padding: 5px;
+  border-radius: 0 0 20px 20px;
+}
+
+.rmImage:hover {
+  transition: 0.5s;
+  background-color: rgb(32, 32, 32);
+}
+
+.w100 {
+  width: auto;
+}
+
+.shadow {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
