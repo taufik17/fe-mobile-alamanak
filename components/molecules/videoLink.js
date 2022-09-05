@@ -19,7 +19,7 @@ class FormVideo extends React.Component {
         }
         let data = { formData: this.state };
         // stateChanger(data);
-        console.log(data);
+        // console.log(data);
     };
 
     addNewRow = () => {
@@ -44,7 +44,6 @@ class FormVideo extends React.Component {
         e.preventDefault();
         let data = { formData: this.state };
         this.props.videoData(data);
-        console.log(data);
     };
     clickOnDelete(record) {
         this.setState({
@@ -70,6 +69,7 @@ class FormVideo extends React.Component {
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
+                        onChange={this.handleSubmit}
                     />
                     <label
                         className="form-check-label px-3"
