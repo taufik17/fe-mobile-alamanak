@@ -11,12 +11,12 @@ import VideoLink from "../components/molecules/videoLink";
 import { Form } from "react-bootstrap";
 import axios from "axios";
 import Head from "next/head";
-import { createContext } from "react";
-
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import dynamic from "next/dynamic";
 
 function AddRecipe() {
+    const Editor = dynamic(() => import("../components/editor"), {
+        ssr: false,
+    });
     const [isLoading, setIsLoading] = useState(true);
     const [isAuth, setIsAuth] = useState(false);
 
@@ -38,6 +38,7 @@ function AddRecipe() {
     }, []);
 
     console.log("data video", videoData);
+    console.log("Ingredients", ingredients);
 
     const router = useRouter();
     const { auth } = useSelector((state) => state);
@@ -184,25 +185,9 @@ function AddRecipe() {
                     </div>
 
                     <div className="mt-4">
-                        <CKEditor
-                            editor={ClassicEditor}
-                            data="<h4>Deskripsi :</h4><p>&nbsp;</p><h4>Bahan :</h4><p>&nbsp;</p><h4>Cara Memasak :</h4><p>&nbsp;</p>"
-                            onReady={(editor) => {
-                                // You can store the "editor" and use when it is needed.
-                                console.log("Editor is ready to use!", editor);
-                            }}
-                            onChange={(event, editor) => {
-                                // do something when editor's content changed
-                                const data = editor.getData();
-                                setIngredients(data);
-                                // console.log({ event, editor, data });
-                            }}
-                            onBlur={(event, editor) => {
-                                console.log("Blur.", editor);
-                            }}
-                            onFocus={(event, editor) => {
-                                console.log("Focus.", editor);
-                            }}
+                        <Editor 
+                        value={"<h4>Deskripsi :</h4><p>&nbsp;</p><h4>Bahan :</h4><p>&nbsp;</p><h4>Cara Memasak :</h4><p>&nbsp;</p>"}
+                        onChange={(v) => console.log(v)}
                         />
                     </div>
 

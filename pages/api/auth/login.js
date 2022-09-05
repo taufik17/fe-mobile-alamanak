@@ -5,7 +5,7 @@ export default function handler(req, res) {
   const { email, password } = req.body;
 
   axios
-    .post("http://localhost:8000/login", { email, password })
+    .post(`${process.env.BASE_URL}/login`, { email, password })
     .then((response) => {
         res.status(200).json(response?.data)
     })

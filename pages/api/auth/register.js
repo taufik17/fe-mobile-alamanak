@@ -3,7 +3,7 @@ import axios from "axios";
 export default function handler(req, res) {
   const { name, email, phone, password, confpassword } = req.body;
   axios
-    .post("http://localhost:8000/register", {
+    .post(`${process.env.BASE_URL}/register`, {
       name,
       email,
       phone,

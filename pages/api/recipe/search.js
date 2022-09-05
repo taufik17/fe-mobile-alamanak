@@ -3,7 +3,7 @@ import axios from "axios";
 export default function handler(req, res) {
   const { keyword } = req.body;
   axios
-    .post("http://localhost:8000/recipe/searchRecipe", {
+    .post(`${process.env.BASE_URL}/recipe/searchRecipe`, {
         keyword,
     })
     .then((response) => {
