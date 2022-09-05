@@ -5,11 +5,13 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import React, { useEffect, useState, useCallback } from "react";
 import { Form } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 import VideoLink from "../components/molecules/videoLink";
 
-const Editor = ({ value, recipe, ingredients }) => {
+const Editor = ({ value }) => {
     const [title, setTitle] = useState("");
-    const [imageRecipe, setImageRecipe] = useState([]);
+    const [imageRecipe, setImageRecipe] = useState(null);
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
     const [categorySelect, setCategorySelect] = useState([]);
@@ -17,10 +19,18 @@ const Editor = ({ value, recipe, ingredients }) => {
     const [ingrdnts, setIngrdnts] = React.useState("");
     const [videoData, setVideoData] = useState(null);
 
+    const { auth } = useSelector((state) => state);
+
+    const userToken = auth?.token;
+    const config = {
+        headers: {
+            Authorization: `Bearer ${userToken}`,
+        },
+    };
+
     const handleChangeVideo = useCallback((newValue) => {
         setVideoData(newValue?.formData?.linkVideo);
     }, []);
-
 
     useEffect(() => {
         getCategory();
@@ -59,6 +69,32 @@ const Editor = ({ value, recipe, ingredients }) => {
         console.log("Category", categorySelect);
         console.log("Ingredients", ingrdnts);
         console.log("data video", videoData);
+
+        const data = new FormData();
+        data.append = ("recipeName", title);
+        data.append = ("ingredients", ingrdnts);
+        data.append = ("image", imageRecipe);
+
+        axios
+            .post(
+                `https://alamanak.herokuapp.com/recipe/add`,
+                data,
+                config
+            )
+            .then((res) => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Sukses",
+                    text: "Recipe Berhasil ditambah",
+                });
+            })
+            .catch((err) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Gagal",
+                    text: "Semua form harus terisi",
+                });
+            });
     };
     return (
         <>

@@ -13,7 +13,7 @@ function AddRecipe() {
     });
     const [isLoading, setIsLoading] = useState(true);
     const [isAuth, setIsAuth] = useState(false);
-   
+
     const router = useRouter();
     const { auth } = useSelector((state) => state);
     useEffect(() => {
@@ -32,8 +32,6 @@ function AddRecipe() {
             document.body.style.backgroundColor = "unset";
         };
     });
-
-    
 
     return (
         <>
@@ -57,16 +55,13 @@ function AddRecipe() {
                     </div>
                 </div>
 
-                
-                    <div className="mt-4">
-                        <Editor
-                            value={
-                                "<h4>Deskripsi :</h4><p>&nbsp;</p><h4>Bahan :</h4><p>&nbsp;</p><h4>Cara Memasak :</h4><p>&nbsp;</p>"
-                            }
-                        />
-                    </div>
-
-                    
+                <div className="mt-4">
+                    <Editor
+                        value={
+                            "<h4>Deskripsi :</h4><p>&nbsp;</p><h4>Bahan :</h4><p>&nbsp;</p><h4>Cara Memasak :</h4><p>&nbsp;</p>"
+                        }
+                    />
+                </div>
             </div>
         </>
     );
