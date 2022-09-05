@@ -174,7 +174,10 @@ function AddRecipe() {
                     </div>
 
                     <div className="mt-4">
-                        <Editor />
+                        <Editor 
+                        value={"<h4>Deskripsi :</h4><p>&nbsp;</p><h4>Bahan :</h4><p>&nbsp;</p><h4>Cara Memasak :</h4><p>&nbsp;</p>"}
+                        onChange={(v) => console.log(v)}
+                        />
                     </div>
 
                     <div className="mt-4 mb-4">
