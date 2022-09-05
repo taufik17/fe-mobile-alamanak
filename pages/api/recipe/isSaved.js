@@ -3,7 +3,7 @@ import axios from "axios";
 export default function handler(req, res) {
   const { idUser, idRecipe } = req.body;
   axios
-    .post("http://localhost:8000/recipe/find/isSaved", { idUser, idRecipe })
+    .post(`${process.env.BASE_URL}/recipe/find/isSaved`, { idUser, idRecipe })
     .then((response) => {
       res.status(200).json(response?.data);
     })

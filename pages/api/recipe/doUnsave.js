@@ -3,7 +3,7 @@ import axios from "axios";
 export default function handler(req, res) {
   const { idRecipe, idUser, token } = req.body;
   axios
-    .post("http://localhost:8000/recipe/addUnsaveRecipe", {
+    .post(`${process.env.BASE_URL}/recipe/addUnsaveRecipe`, {
       idRecipe,
       idUser,
     //   headers: {

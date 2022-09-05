@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function handler(req, res) {
   axios
-    .get("http://localhost:8000/category_recipe")
+    .get(`${process.env.BASE_URL}/category_recipe`)
     .then((response) => {
         res.status(200).json(response?.data)
     })

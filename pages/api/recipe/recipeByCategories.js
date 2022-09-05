@@ -3,7 +3,7 @@ import axios from "axios";
 export default function handler(req, res) {
   const { idCategory } = req.body;
   axios
-    .post("http://localhost:8000/recipe/find/category", {
+    .post(`${process.env.BASE_URL}/recipe/find/category`, {
         idCategory,
     })
     .then((response) => {

@@ -3,7 +3,7 @@ import axios from "axios";
 export default function handler(req, res) {
   const { id_user } = req.body;
   axios
-    .post("http://localhost:8000/recipe/find/id_user", { id: id_user })
+    .post(`${process.env.BASE_URL}/recipe/find/id_user`, { id: id_user })
     .then((response) => {
       res.status(200).json(response?.data);
     })
