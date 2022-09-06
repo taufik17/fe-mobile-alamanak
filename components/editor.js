@@ -1,5 +1,6 @@
 import styleAddRecipe from "../styles/AddRecipe.module.css";
 import { FiBookOpen, FiUploadCloud } from "react-icons/fi";
+import { FaDelicious } from "react-icons/fa";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import React, { useEffect, useState, useCallback } from "react";
@@ -8,9 +9,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import VideoLink from "../components/molecules/videoLink";
+import Loading from "../components/spinner";
+import { useRouter } from "next/router";
 
 const Editor = ({ value }) => {
     const [title, setTitle] = useState("");
+    const [taste, setTaste] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const [imageRecipe, setImageRecipe] = useState(null);
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
@@ -20,11 +25,12 @@ const Editor = ({ value }) => {
     const [videoData, setVideoData] = useState(null);
 
     const { auth } = useSelector((state) => state);
-
+    const router = useRouter();
     const userToken = auth?.token;
     const config = {
         headers: {
             Authorization: `Bearer ${userToken}`,
+            "content-type": "multipart/form-data",
         },
     };
 
@@ -64,6 +70,7 @@ const Editor = ({ value }) => {
     };
 
     const handlePost = () => {
+        setIsLoading(true);
         console.log("hasil", title);
         console.log("Image", imageRecipe);
         console.log("Category", categorySelect);
@@ -71,28 +78,32 @@ const Editor = ({ value }) => {
         console.log("data video", videoData);
 
         const data = new FormData();
-        data.append = ("recipeName", title);
-        data.append = ("ingredients", ingrdnts);
-        data.append = ("image", imageRecipe);
+        data.append("recipeName", title);
+        data.append("ingredients", ingrdnts);
+        data.append("image", imageRecipe);
+        data.append("category", categorySelect);
+        data.append("taste", taste);
 
         axios
-            .post(
-                `https://alamanak.herokuapp.com/recipe/add`,
-                data,
-                config
-            )
+            .post(`https://alamanak.herokuapp.com/recipe/add`, data, config)
             .then((res) => {
+                setIsLoading(false);
                 Swal.fire({
                     icon: "success",
                     title: "Sukses",
                     text: "Recipe Berhasil ditambah",
-                });
+                }).then((result) =>
+                    result.isConfirmed
+                        ? router.replace("/Profile/MyRecipe")
+                        : null
+                );
             })
             .catch((err) => {
+                setIsLoading(false);
                 Swal.fire({
                     icon: "error",
                     title: "Gagal",
-                    text: "Semua form harus terisi",
+                    text: { err },
                 });
             });
     };
@@ -178,6 +189,18 @@ const Editor = ({ value }) => {
                         setIngrdnts(data);
                     }}
                 />
+
+                <div className={`${styleAddRecipe.search} mb-2 mt-3 mb-4`}>
+                    <input
+                        type="text"
+                        className={`${styleAddRecipe.formControl} form-control`}
+                        placeholder="Taste: ex: pedas, gurih"
+                        required
+                        onChange={(e) => setTaste(e.target.value)}
+                    />
+                    <FaDelicious className={styleAddRecipe.icon} />{" "}
+                </div>
+
                 <div className="mt-4 mb-4">
                     <VideoLink videoData={handleChangeVideo} />
                 </div>
@@ -186,8 +209,9 @@ const Editor = ({ value }) => {
                     <button
                         className={`${styleAddRecipe.btnPost} btn btn-warning px-5 mt-5 py-2`}
                         type="submit"
+                        disabled={isLoading}
                     >
-                        Post
+                        {isLoading ? <Loading /> : "Post"}
                     </button>
                 </div>
             </form>
