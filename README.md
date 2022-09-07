@@ -1,34 +1,154 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div id="top"></div>
 
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/taufik17/alamanak">
+    <img src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659148545/portofolio/recipe/2_kpnvj7.png" alt="Logo" width="150px">
+  </a>
+
+  <h3 align="center">Alamanak (Ala Makanan Enak) Backend</h3>
+
+  <p align="center">
+    Create a Node.js app for building Alamanak RESTful APIs using Express.
+    <br />
+    <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://github.com/taufik17/alamanak/issues/1">Report a Bug • </a><a href="https://github.com/taufik17/alamanak/issues/2">Request a Feature • </a><a href="https://github.com/taufik17/alamanak/issues/3">Ask a Question</a>
+  </p>
+
+</div>
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup-env-example">Setup .env example</a></li>
+      </ul>
+    </li>
+    <li><a href="#rest-api">REST API</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+Create a Node.js app for building Alamanak RESTful APIs using Express.
+
+### Built With
+This app was built with some technologies below:
+- [Node.js](https://nodejs.org/en/)
+- [Express.js](https://expressjs.com/)
+- [JSON Web Tokens](https://jwt.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- and other
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
+This is an example of how to list things you need to use the software and how to install them.
+
+* [Node.js](https://nodejs.org/en/download/)
+
+### Requirements
+* [Node.js](https://nodejs.org/en/)
+* [Postman](https://www.getpostman.com/) for testing
+* [Database](https://www.postgresql.org/)
+
+### Installation
+
+- Clone the Repo
+```
+git clone https://github.com/taufik17/alamanak.git
+```
+- Go To Folder Repo
+```
+cd alamanak
+```
+- Install Module
+```
+npm install
+```
+- Create new database named `alamanak`
+- Restore database file in `database/db` using pgadmin4
+
+- <a href="#setup-env-example">Setup .env</a>
+- Type ` npm run dev` To Start Development
+- Type ` npm run start` To Start Production
+
+### Setup .env example
+
+Create .env file in your root project folder.
+
+```env
+base_url=
+EXPRESS_PORT=
+DB_USER=
+DB_HOST=
+DB_DATABASE=
+DB_PASSWORD=
+DB_PORT=
+SECRET_KEY=
+ENV_MODE=
+DB_URI=
+
+CLOUDINARY_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## REST API
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+You can view my Postman collection [here]()
+</br>
+[![Run in Postman](https://run.pstmn.io/button.svg)]()
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+<!-- CONTRIBUTING -->
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Related Project
+:rocket: [`Backend Alamanak`](https://github.com/taufik17/alamanak.git)
 
-## Deploy on Vercel
+:rocket: [`Frontend Alamanak`](https://github.com/taufik17/alamanak-frontend.git)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+:rocket: [`Web Service`](#)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+:rocket: [`Demo Alamanak`](#)
+
+## Contact
+
+My Email : taufikagungsantoso17@gmail.com
+
+## License
+Distributed under the [MIT](/LICENSE) License.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
