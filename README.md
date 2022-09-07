@@ -3,18 +3,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/taufik17/alamanak">
+  <a href="https://github.com/taufik17/fe-mobile-alamanak.git">
     <img src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659148545/portofolio/recipe/2_kpnvj7.png" alt="Logo" width="150px">
   </a>
 
-  <h3 align="center">Alamanak (Ala Makanan Enak) Backend</h3>
+  <h3 align="center">Alamanak (Ala Makanan Enak) Front-end Mobile</h3>
 
   <p align="center">
-    Create a Node.js app for building Alamanak RESTful APIs using Express.
+    Create a Node.js app for building Alamanak frontend mobile using NextJs.
     <br />
     <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://github.com/taufik17/alamanak/issues/1">Report a Bug • </a><a href="https://github.com/taufik17/alamanak/issues/2">Request a Feature • </a><a href="https://github.com/taufik17/alamanak/issues/3">Ask a Question</a>
+    <a href="https://github.com/taufik17/fe-mobile-alamanak/issues/1">Report a Bug • </a><a href="https://github.com/taufik17/fe-mobile-alamanak/issues/2">Request a Feature • </a><a href="https://github.com/taufik17/fe-mobile-alamanak/issues/3">Ask a Question</a>
   </p>
 
 </div>
@@ -50,7 +50,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Create a Node.js app for building Alamanak RESTful APIs using Express.
+Create a Node.js app for building Alamanak front-end mobile using NextJs.
 
 ### Built With
 This app was built with some technologies below:
