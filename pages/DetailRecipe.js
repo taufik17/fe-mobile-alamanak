@@ -136,13 +136,14 @@ function DetailRecipe() {
                       height="80px"
                       layout="responsive"
                     />
-                    <Link href="/" passHref>
-                      <a>
-                        <p className="px-2">
-                          <FiArrowLeft className={styleDetailRecipe.back} />
-                        </p>
-                      </a>
-                    </Link>
+                    <a className="cursor">
+                      <p className="px-2">
+                        <FiArrowLeft
+                          className={styleDetailRecipe.back}
+                          onClick={() => router.back()}
+                        />
+                      </p>
+                    </a>
 
                     <div
                       className={`${styleDetailRecipe.posTitleLike} row justify-content-between mx-0`}

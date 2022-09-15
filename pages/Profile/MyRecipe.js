@@ -17,19 +17,22 @@ function MyRecipe() {
   const [isAuth, setIsAuth] = useState(false);
   const router = useRouter();
 
+  const param = router?.query?.delete;
+
   const [myRecipe, setMyRecipe] = useState([]);
   const [loadMyRecipe, setLoadMyRecipe] = useState(true);
 
   useEffect(() => {
+    setMyRecipe([]);
+    setLoadMyRecipe(true);
     getMyRecipe();
-  }, []);
+  }, [param]);
 
   const getMyRecipe = () => {
     const id_user = auth?.profile?.id_user;
     axios
       .post("/api/recipe/myRecipe", { id_user })
       .then((res) => {
-        console.log(res?.data?.data);
         setMyRecipe(res?.data?.data);
         setLoadMyRecipe(false);
       })
@@ -96,6 +99,7 @@ function MyRecipe() {
                     {myRecipe.map((item) => (
                       <MyRecipeComp
                         key={item?.id_recipe}
+                        id_recipe={item?.id_recipe}
                         name={item?.recipe_name}
                         foto={item?.recipe_image}
                         category={item?.name_category}
