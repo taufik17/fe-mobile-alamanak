@@ -33,7 +33,6 @@ export async function getServerSideProps() {
   // Fetch data from external API
   const getCategory = await fetch(`${process.env.BASE_URL}/category_recipe`);
   const category = await getCategory.json();
-  console.log("ini castegory", category);
 
   const getNewRecipe = await fetch(
     `${process.env.BASE_URL}/recipe/find/latest`
