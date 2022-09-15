@@ -62,3 +62,10 @@
 .imgPopular img {
     border-radius: 25px;
 }
+
+.sortActive {
+    background-color: #F1CD31;
+    padding: 8px;
+    font-size: 45px;
+    color: white;
+}

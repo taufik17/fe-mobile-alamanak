@@ -3,7 +3,7 @@ import styleHome from "../styles/Home.module.css";
 import stylePopular from "../styles/Popular.module.css";
 import Link from "next/link";
 import { FiChevronLeft } from "react-icons/fi";
-import { MdOutlineAutoAwesome } from "react-icons/md";
+import { ImSortAmountDesc, ImSortAmountAsc } from "react-icons/im";
 import PopularRecipe from "../components/molecules/popularRecipeAll";
 import axios from "axios";
 import Head from "next/head";
@@ -11,10 +11,28 @@ import Head from "next/head";
 function Popular() {
   const [popularRecipe, setPopularRecipe] = useState([]);
   const [loadPopular, setLoadPopular] = useState(true);
+  const [sort, setSort] = useState(false);
+  const [asc, setAsc] = useState(false);
+  const [desc, setDesc] = useState(false);
+  console.log("sort", sort);
 
   useEffect(() => {
-    getPopular();
-  }, []);
+    if (sort == false) {
+      setLoadPopular(true);
+      setPopularRecipe([]);
+      getPopular();
+    }
+    else if (sort == "asc") {
+      setLoadPopular(true);
+      setPopularRecipe([]);
+      getPopularasc();
+    }
+    else if (sort == "desc") {
+      setLoadPopular(true);
+      setPopularRecipe([]);
+      getPopulardesc();
+    }
+  }, [sort]);
 
   const getPopular = () => {
     axios
@@ -29,6 +47,52 @@ function Popular() {
       .finally(() => {
         setLoadPopular(false);
       });
+  };
+  const getPopularasc = () => {
+    axios
+      .get("/api/recipe/popularasc")
+      .then((res) => {
+        setPopularRecipe(res?.data?.data);
+        setLoadPopular(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoadPopular(false);
+      });
+  };
+  
+  const getPopulardesc = () => {
+    axios
+      .get("/api/recipe/populardesc")
+      .then((res) => {
+        setPopularRecipe(res?.data?.data);
+        setLoadPopular(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoadPopular(false);
+      });
+  };
+
+  const activeasc = () => {
+    setSort("asc");
+    setAsc(true);
+  };
+
+  const activedesc = () => {
+    setSort("desc");
+    setAsc(false);
+    setDesc(true);
+  };
+
+  const offsort = () => {
+    setSort(false);
+    setAsc(false);
+    setDesc(false);
   };
 
   return (
@@ -52,7 +116,34 @@ function Popular() {
                 </h4>
               </div>
               <div className="col-2">
-                <MdOutlineAutoAwesome className={stylePopular.back} />
+                {asc ? (
+                  <>
+                    <ImSortAmountAsc
+                      className={`${stylePopular.back} ${stylePopular.sortActive} cursor`}
+                      onClick={activedesc}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {desc ? (
+                      <>
+                        <>
+                          <ImSortAmountDesc
+                            className={`${stylePopular.back} ${stylePopular.sortActive} cursor`}
+                            onClick={offsort}
+                          />
+                        </>
+                      </>
+                    ) : (
+                      <>
+                        <ImSortAmountAsc
+                          className={`${stylePopular.back} cursor`}
+                          onClick={activeasc}
+                        />
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             </div>
 
@@ -80,7 +171,6 @@ function Popular() {
                 ))}
               </>
             )}
-
           </div>
         </div>
       </div>
