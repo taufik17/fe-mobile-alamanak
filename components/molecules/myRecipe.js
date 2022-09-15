@@ -18,6 +18,10 @@ function myRecipe(props) {
   const { auth } = selector((state) => state);
   const userToken = auth?.token;
 
+  const handleEdit = () => {
+    console.log("edit");
+  };
+
   const handleDelete = (id, name) => {
     Swal.fire({
       title: `Delete ${name} ?`,
@@ -92,9 +96,14 @@ function myRecipe(props) {
           <div className="col-4">
             <div className="m-0">
               <span>
-                <FiEdit
-                  className={`${styleProfile.icon} ${styleProfile.edit} mx-1`}
-                />
+                <a className="cursor">
+                  <FiEdit
+                    className={`${styleProfile.icon} ${styleProfile.edit} mx-1`}
+                    onClick={() => {
+                      handleEdit(id_recipe, name);
+                    }}
+                  />
+                </a>
                 <a className="cursor">
                   <FiTrash
                     className={`${styleProfile.icon} ${styleProfile.delete} mx-1`}
