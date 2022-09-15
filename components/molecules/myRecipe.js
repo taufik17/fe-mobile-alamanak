@@ -51,11 +51,14 @@ function myRecipe(props) {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", `${name} has been deleted.`, "success").then(
-          router.push({
-            pathname: "/Profile/MyRecipe",
-            query: { delete: true + id },
-          })
+        Swal.fire("Deleted!", `${name} has been deleted.`, "success")
+        .then(
+          setTimeout(() => {
+            router.push({
+              pathname: "/Profile/MyRecipe",
+              query: { delete: true + id },
+            })
+          },800)
         );
       }
     });
