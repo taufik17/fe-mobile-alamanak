@@ -86,7 +86,7 @@ const Editor = ({ value }) => {
         data.append("video", JSON.stringify(videoData));
 
         axios
-            .post(`${process.env.BASE_URL}/recipe/add`, data, config)
+            .post(`https://alamanak.herokuapp.com/recipe/add`, data, config)
             .then((res) => {
                 setIsLoading(false);
                 Swal.fire({
