@@ -4,7 +4,6 @@ import HomeContent from "../components/content/homeContentSsr";
 import Head from "next/head";
 
 function HomeSsr(props) {
-  console.log("ini props",props)
   const newRecipe = props.newRecipe.data;
   const category = props.category.data;
   const popular = props.popular.data;
