@@ -11,6 +11,7 @@ function PopularRecipe(props) {
   const { key, id_recipe, name, foto, taste, like, category, id_user } = props;
   const { auth } = useSelector((state) => state);
   const [isAuth, setIsAuth] = useState(false);
+  const send = { id_recipe, name };
 
   useEffect(() => {
     if (auth?.token !== null) {
@@ -29,7 +30,17 @@ function PopularRecipe(props) {
           </div>
           <div className={`${stylePopular.rmPadRight} col-5`}>
             <div className="m-2">
-              <h6 className={stylePopular.namePopular}>{name}</h6>
+              <Link
+                href={{
+                  pathname: "/DetailRecipe",
+                  query: send, // the data
+                }}
+                passHref
+              >
+                <a className="rm-decoration">
+                  <h6 className={stylePopular.namePopular}>{name}</h6>
+                </a>
+              </Link>
               <p className={stylePopular.variant}> {category} </p>
               <span className={stylePopular.taste}>{taste}</span>
             </div>
@@ -40,8 +51,18 @@ function PopularRecipe(props) {
               <div className="col-4">
                 <div className="m-0">
                   <span>
-                    <Saved key={key} id_recipe={id_recipe} id_user={id_user} name={name} />
-                    <Like key={key} id_recipe={id_recipe} id_user={id_user} name={name} />
+                    <Saved
+                      key={key}
+                      id_recipe={id_recipe}
+                      id_user={id_user}
+                      name={name}
+                    />
+                    <Like
+                      key={key}
+                      id_recipe={id_recipe}
+                      id_user={id_user}
+                      name={name}
+                    />
                   </span>
                 </div>
               </div>
