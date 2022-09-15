@@ -83,9 +83,10 @@ const Editor = ({ value }) => {
         data.append("image", imageRecipe);
         data.append("category", categorySelect);
         data.append("taste", taste);
+        data.append("video", JSON.stringify(videoData));
 
         axios
-            .post(`https://alamanak.herokuapp.com/recipe/add`, data, config)
+            .post(`${process.env.BASE_URL}/recipe/add`, data, config)
             .then((res) => {
                 setIsLoading(false);
                 Swal.fire({
