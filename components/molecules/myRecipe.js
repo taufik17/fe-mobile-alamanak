@@ -18,8 +18,11 @@ function myRecipe(props) {
   const { auth } = selector((state) => state);
   const userToken = auth?.token;
 
-  const handleEdit = () => {
-    console.log("edit");
+  const handleEdit = (id, name) => {
+    router.push({
+      pathname: "/Profile/EditMyRecipe",
+      query: { idRecipe: id, name: name },
+    });
   };
 
   const handleDelete = (id, name) => {
@@ -51,14 +54,13 @@ function myRecipe(props) {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", `${name} has been deleted.`, "success")
-        .then(
+        Swal.fire("Deleted!", `${name} has been deleted.`, "success").then(
           setTimeout(() => {
             router.push({
               pathname: "/Profile/MyRecipe",
               query: { delete: true + id },
-            })
-          },800)
+            });
+          }, 800)
         );
       }
     });
